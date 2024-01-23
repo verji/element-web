@@ -1,0 +1,14 @@
+{
+    "Automatic_logout": "Automatisk utlogging",
+    "settings": {
+        "time": {
+            "30_Seconds": "30 Sekunder",
+            "1_Hour": "1 Time",
+            "3_Hours": "3 Timer",
+            "6_Hours": "6 Timer",
+            "1_Day": "1 Dag",
+            "1_Week": "1 uke",
+            "1_Month": "1 Måned"
+        }
+    }
+}

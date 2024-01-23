@@ -1,0 +1,16 @@
+{
+    "Automatic_logout": "Automatic signout",
+    "Logout_type": "Logout type",
+    "test": "teeeeeeeeeesting",
+    "settings": {
+        "time": {
+            "30_Seconds": "30 Seconds",
+            "1_Hour": "1 Hour",
+            "3_Hours": "3 Hours",
+            "6_Hours": "6 Hours",
+            "1_Day": "1 Day",
+            "1_Week": "1 Week",
+            "1_Month": "1 Month"
+        }
+    }
+}
