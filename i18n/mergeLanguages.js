@@ -69,21 +69,17 @@ function mergeTranslations(translations) {
 }
 
 files.forEach((file) => {
-    const filePath = path.join(langFilesDir, file);
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    allLangs[file] = flattenObject(JSON.parse(fileContent));
+    if (file.endsWith('.json')) {
+        const filePath = path.join(langFilesDir, file);
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        allLangs[file] = flattenObject(JSON.parse(fileContent));
+    }
 });
 
-// console.log("flattenObject");
-// console.dir(allLangs, { depth: null });
 allLangs = mergeTranslations(allLangs);
-// console.dir(allLangs, { depth: null });
-// console.log("before writing to file", allLangs)
-
-
 
 fs.writeFileSync('./i18n/verjiTranslations.json', JSON.stringify(allLangs, null, 4), 'utf-8');
 
-const verjiTranslations = JSON.parse(fs.readFileSync('./i18n/verjiTranslations.json', 'utf-8'));
-// console.dir(verjiTranslations, { depth: null });
-console.log("verjiTranslations", verjiTranslations);
+// const verjiTranslations = JSON.parse(fs.readFileSync('./i18n/verjiTranslations.json', 'utf-8'));
+// console.log("verjiTranslations", verjiTranslations);
+console.info('Merged and formatted translations written to ./i18n/verjiTranslations.json');
