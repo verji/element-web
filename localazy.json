@@ -1,37 +1,10 @@
 {
-    "readKey": "a7688614897667993891-866e2615b0a22e6ccef56aea9b10e815efa3e1296752a7a30bd9925f1a8f33e7",
 
-    "upload": {
-        "type": "json",
-        "keySeparator": "|",
-        "deprecate": "file",
-        "features": ["plural_object", "filter_untranslated"],
-        "files": [
-            {
-                "pattern": "src/i18n/strings/en_EN.json",
-                "file": "element-web.json",
-                "lang": "inherited"
-            },
-            {
-                "group": "existing",
-                "pattern": "src/i18n/strings/*.json",
-                "file": "element-web.json",
-                "excludes": ["src/i18n/strings/en_EN.json"],
-                "lang": "${autodetectLang}"
-            }
-        ]
-    },
+    "writeKey": "a7502968008340892958-c69667a7a9b7b40982508b29779863d92aa0bf803f5317f63c8adf85a6180e7e",
+    "readKey": "a7502968008340892958-c5daabb4515f4e0f68fbc916cd27e9dd513ea8b3df956eb1d668098e22bf0fa9",
 
     "download": {
-        "files": [
-            {
-                "conditions": "equals: ${file}, element-web.json",
-                "output": "src/i18n/strings/${langLsrUnderscore}.json"
-            }
-        ],
-        "includeSourceLang": "${includeSourceLang|false}",
-        "langAliases": {
-            "en": "en-EN"
-        }
+        "files": "element-web/i18n/langFiles/${lang}.json"
     }
+
 }

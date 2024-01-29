@@ -1,4 +1,5 @@
 /* eslint-disable quote-props */
+const fs = require('fs');
 
 const dotenv = require("dotenv");
 const path = require("path");
@@ -766,32 +767,42 @@ module.exports = (env, argv) => {
 
         // configuration for the webpack-dev-server
         devServer: {
-            client: {
-                overlay: {
-                    // Only show overlay on build errors as anything more can get annoying quickly
-                    errors: true,
-                    warnings: false,
-                    runtimeErrors: false,
-                },
-            },
-
-            static: {
+            // serve unwebpacked assets from webapp.
+            static: [
                 // Where to serve static assets from
-                directory: "./webapp",
-            },
-
-            devMiddleware: {
-                // Only output errors, warnings, or new compilations.
-                // This hides the massive list of modules.
-                stats: "minimal",
-            },
-
-            // Enable Hot Module Replacement without page refresh as a fallback in
-            // case of build failures
-            hot: "only",
-
-            // Disable host check
+                {directory: "./webapp"},
+                {directory: "./"},
+            ],
             allowedHosts: "all",
+            // Only output errors, warnings, or new compilations.
+            // This hides the massive list of modules.
+            client: {
+                logging: "none"
+            },
+            hot: "only",
+            //inline: true,
+            proxy: {
+                context: function(pathname, req){
+                    console.log("HEADER: ", req.headers.host)
+                    if(!/client.verji.local/.test(req.headers.host)){
+                        console.log("Should be proxied: TRUE")
+                        return true
+                    }else{
+                        console.log("Should be proxied: FALSE")
+                        return false
+                    }
+                },
+                target: 'https://localhost:4443',
+                changeOrigin: false,
+                secure: false
+            },
+            host: '0.0.0.0', // 'client.verji.local',
+            port: 443,
+            https: {
+                key: fs.readFileSync("../tls.key"),
+                cert: fs.readFileSync("../tls.crt"),
+            }
+            //https: true
         },
     };
 };

@@ -1,47 +1,47 @@
 {
     "Automatic_logout": {
-        "en_EN": "Automatic signout",
+        "en": "Automatic signout",
         "nb_NO": "Automatisk utlogging",
         "se": "Automatisk utloggning"
     },
     "Logout_type": {
-        "en_EN": "Logout type"
+        "en": "Logout type"
     },
-    "en|test": {
-        "en_EN": "teeeeeeeeeesting"
+    "test": {
+        "en": "teeeeeeeeeesting"
     },
     "settings|time|30_Seconds": {
-        "en_EN": "30 Seconds",
+        "en": "30 Seconds",
         "nb_NO": "30 Sekunder",
         "se": "30 Sekunder"
     },
     "settings|time|1_Hour": {
-        "en_EN": "1 Hour",
+        "en": "1 Hour",
         "nb_NO": "1 Time",
         "se": "1 Timme"
     },
     "settings|time|3_Hours": {
-        "en_EN": "3 Hours",
+        "en": "3 Hours",
         "nb_NO": "3 Timer",
         "se": "3 Timmar"
     },
     "settings|time|6_Hours": {
-        "en_EN": "6 Hours",
+        "en": "6 Hours",
         "nb_NO": "6 Timer",
         "se": "6 Timmar"
     },
     "settings|time|1_Day": {
-        "en_EN": "1 Day",
+        "en": "1 Day",
         "nb_NO": "1 Dag",
         "se": "1 Dag"
     },
     "settings|time|1_Week": {
-        "en_EN": "1 Week",
+        "en": "1 Week",
         "nb_NO": "1 uke",
         "se": "1 Vecka"
     },
     "settings|time|1_Month": {
-        "en_EN": "1 Month",
+        "en": "1 Month",
         "nb_NO": "1 Måned",
         "se": "1 Månad"
     }
