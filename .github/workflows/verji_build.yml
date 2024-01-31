@@ -1,4 +1,4 @@
-name: Build
+name: verji_Build
 on:
     workflow_dispatch:
     pull_request: {}
