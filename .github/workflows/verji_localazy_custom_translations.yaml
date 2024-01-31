@@ -27,7 +27,7 @@ jobs:
         LOCALAZY_READ_KEY: ${{ secrets.LOCALAZY_READ_TOKEN }}
 
     - name: Merge translations
-      run: node element-web/i18n/mergeLanguages.js
+      run: node ./i18n/mergeLanguages.js
 
     # - name: Build
     #   run: npm run build
