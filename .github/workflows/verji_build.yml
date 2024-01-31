@@ -13,6 +13,7 @@ env:
     PR_NUMBER: ${{ github.event.pull_request.number }}
 jobs:
     build:
+        uses: matrix-org/matrix-web-i18n/.github/workflows/localazy_download.yaml@main
         name: "Build on ${{ matrix.image }}"
         # We build on all 3 platforms to ensure we don't have any OS-specific build incompatibilities
         strategy:
