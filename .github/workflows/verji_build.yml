@@ -3,7 +3,7 @@ on:
     workflow_dispatch:
     pull_request: {}
     push:
-        branches: [develop, master]
+        # branches: [develop, master]
     merge_group:
         types: [checks_requested]
 # develop pushes and repository_dispatch handled in build_develop.yaml
