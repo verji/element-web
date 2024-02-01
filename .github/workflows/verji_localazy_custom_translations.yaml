@@ -1,4 +1,4 @@
-name: Download and Merge Translations
+name: Download and Merge Verji Translations
 
 on:
   workflow_dispatch:
