@@ -2,7 +2,7 @@ name: Download and Merge Translations
 
 on:
   workflow_dispatch:
-  push:
+  # push:
     # branches: NOTE Uncomment this line to restrict the action to specific branches (like main)
     #   - main
 
