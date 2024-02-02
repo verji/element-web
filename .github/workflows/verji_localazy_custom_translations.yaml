@@ -1,7 +1,8 @@
-name: Download and Merge Translations
+name: Download and Merge verji Translations
 
 on:
-  push:
+    workflow_dispatch:
+#   push:
     # branches: NOTE Uncomment this line to restrict the action to specific branches (like main)
     #   - main
 
