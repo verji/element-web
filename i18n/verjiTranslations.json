@@ -44,5 +44,188 @@
         "en": "1 Month",
         "nb_NO": "1 Måned",
         "se": "1 Månad"
+    },
+    "'Admin Portal' > 'Invitations' > 'Invitations without BankID'": {
+        "nb": "'Admin Portal' > 'Invitations' > 'Invitations without BankID'"
+    },
+    "1 Day": {
+        "nb": "1 Day"
+    },
+    "1 Hour": {
+        "nb": "1 Hour"
+    },
+    "1 Month": {
+        "nb": "1 Month"
+    },
+    "1 Week": {
+        "nb": "1 Week"
+    },
+    "3 Hours": {
+        "nb": "3 Hours"
+    },
+    "30 Seconds": {
+        "nb": "30 Seconds"
+    },
+    "400: Bad request.": {
+        "nb": "400: Bad request."
+    },
+    "401: Unauthorized.": {
+        "nb": "401: Unauthorised."
+    },
+    "403: Forbidden.": {
+        "nb": "403: Forbidden."
+    },
+    "408: Request timeout.": {
+        "nb": "408: Request timeout."
+    },
+    "429: Too many requests.": {
+        "nb": "429: Too many requests."
+    },
+    "500: Internal server error.": {
+        "nb": "500: Internal server error."
+    },
+    "6 Hours": {
+        "nb": "6 Hours"
+    },
+    "Add personal message": {
+        "nb": "Add personal message"
+    },
+    "An invitation will be sent to the following guest(s). Please review and confirm their information.": {
+        "nb": "An invitation will be sent to the following guest(s). Please check and confirm their details."
+    },
+    "Automatic logout": {
+        "nb": "Automatic signout"
+    },
+    "Confirm guest invite": {
+        "nb": "Confirm guest invitation"
+    },
+    "Connected to organisation": {
+        "nb": "Connected to organisation"
+    },
+    "Following guest(s) %(users)s are already Verji users. Follow the instructions below to invite existing users.": {
+        "nb": "Following guest(s) %(users)s are already Verji users. Follow the instructions below to invite existing users."
+    },
+    "Following guest(s) %(users)s are already Verji users. Please search them by name or username in order to start a conversation with them.": {
+        "nb": "The following guest(s) %(users)s are already Verji users. Please search for them by name or username to start a conversation with them."
+    },
+    "Following guest(s) %(users)s are already Verji users. Please search them up by name or username in order to start a conversation with them.": {
+        "nb": "Following guest(s) %(users)s are already Verji users. Please search for them by name or username in order to start a conversation with them."
+    },
+    "Invite %(email)s as guest to your organisation": {
+        "nb": "Invite %(email)s as a guest to your organisation"
+    },
+    "Invite %(email)s as guest to your organization": {
+        "nb": "Invite %(email)s as guest to your organisation"
+    },
+    "Invite existing users": {
+        "nb": "Invite existing users"
+    },
+    "Invite guest(s)": {
+        "nb": "Invite guest(s)"
+    },
+    "Invite new users": {
+        "nb": "Invite new users"
+    },
+    "Invite someone using their name or username (like <userId/>).": {
+        "nb": "Invite someone using their name or username (like <userId/>)."
+    },
+    "Inviting": {
+        "nb": "Inviting"
+    },
+    "Language": {
+        "nb": "Language"
+    },
+    "Loading, please wait...": {
+        "nb": "Loading, please wait..."
+    },
+    "Mobile phone number": {
+        "nb": "Mobile phone number"
+    },
+    "News": {
+        "nb": "Latest news"
+    },
+    "News from <a>Verji</a>": {
+        "nb": "Latest news from <a>Verji</a>"
+    },
+    "Once you send your invitation(s), you can immediately start sending messages and documents, which they will be able to interact with once they have accepted your invitation.": {
+        "nb": "After sending your invitation(s), you can start sending messages and documents right away. They'll be able to interact with them once they accept your invitation."
+    },
+    "One or more the e-mails you entered, are already Verji-users. Please select the organization you wish to invite them as a guest to.": {
+        "nb": "One or more of the e-mails you entered are already Verji users. Please select the organisation you wish to invite them as a guest to."
+    },
+    "Oops, something went wrong during the invite process. You can follow up your invite(s) by opening your %(path)s.": {
+        "nb": "Oops, something went wrong during the invitation process. You can track your invitation(s) by opening your %(path)s."
+    },
+    "Oops, something went wrong under the invite process. You can follow up your invite(s) by opening your %(path)s.": {
+        "nb": "Oops, something went wrong during the invitation process. You can track your invitation(s) by opening your %(path)s."
+    },
+    "Oops, something went wrong while loading data.": {
+        "nb": "Oops, something went wrong whilst loading the data."
+    },
+    "Open Admin Portal": {
+        "nb": "Open Admin Portal"
+    },
+    "Operating messages": {
+        "nb": "Status messages"
+    },
+    "Operating messages from <a>Verji</a>": {
+        "nb": "Status messages from <a>Verji</a>"
+    },
+    "Organization": {
+        "nb": "Organisation"
+    },
+    "People|en": {
+        "nb": "Folket"
+    },
+    "Please contact Verji support team for further instructions.": {
+        "nb": "Please contact the Verji support team for further guidance."
+    },
+    "Please fill out any missing information for your guest(s), and select which organisation you wish to invite them to.": {
+        "nb": "Please fill in any missing information for your guest(s) and select the organisation to which you'd like to invite them."
+    },
+    "Please fill out any missing information for your guest(s), and select which organization you wish to invite them to.": {
+        "nb": "Please fill out any missing information for your guest(s), and select which organisation you wish to invite them to."
+    },
+    "Please register an organization with Verji, or contact Verji support team for further instructions.": {
+        "nb": "Please register an organisation with Verji, or contact the Verji support team for further guidance."
+    },
+    "Please try again or contact Verji support team for further instructions.": {
+        "nb": "Please try again or contact the Verji support team for further guidance."
+    },
+    "Preferred language": {
+        "nb": "Recipient's preferred language"
+    },
+    "Remove user": {
+        "nb": "Remove user"
+    },
+    "Start a conversation with someone using their name/username (like %(userId)s), or invite new guests by their email address.": {
+        "nb": "Start a conversation with someone using their name/username (like %(userId)s), or invite new guests by their email address."
+    },
+    "Stay signed in": {
+        "nb": "Stay signed in"
+    },
+    "Turned off": {
+        "nb": "Turned off"
+    },
+    "Verji_dark": {
+        "nb": "Dark"
+    },
+    "Verji_light": {
+        "nb": "Light"
+    },
+    "You are about to be signed out": {
+        "nb": "You are about to be signed out"
+    },
+    "You are being signed out automatically due to inactivity.": {
+        "nb": "You are being signed out automatically due to inactivity."
+    },
+    "Your account is not setup as admin for any organizations and is thus unable to invite guests.": {
+        "nb": "Your account isn't set up as an admin for any organisations, so you can't invite guests."
+    },
+    "people|en": {
+        "nb": "Folket"
+    },
+    "random_tekst|en": {
+        "nb": "Dette er en tilfeldig tekst"
     }
 }
