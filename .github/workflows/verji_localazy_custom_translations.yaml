@@ -20,7 +20,7 @@ jobs:
         node-version: '20'
 
     - name: Install dependencies
-      run: npm ci
+      run: yarn install
 
     - name: Download translations
       run: npx localazy download
