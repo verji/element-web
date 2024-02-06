@@ -1,7 +1,7 @@
 {
 
-    "writeKey": "a7502968008340892958-c69667a7a9b7b40982508b29779863d92aa0bf803f5317f63c8adf85a6180e7e",
-    "readKey": "a7502968008340892958-c5daabb4515f4e0f68fbc916cd27e9dd513ea8b3df956eb1d668098e22bf0fa9",
+    "temp-writeKey": "a7502968008340892958-c69667a7a9b7b40982508b29779863d92aa0bf803f5317f63c8adf85a6180e7e",
+    "temp-readKey": "a7502968008340892958-c5daabb4515f4e0f68fbc916cd27e9dd513ea8b3df956eb1d668098e22bf0fa9",
 
     "download": {
         "files": "element-web/i18n/langFiles/${lang}.json"

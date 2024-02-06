@@ -24,6 +24,9 @@ jobs:
 
     - name: Localazy Download
       uses: localazy/download@v1.1.0
+      with:
+        read_key: ${{ secrets.LOCALAZY_READ_TOKEN }}
+        write_key: ${{ secrets.LOCALAZY_WRITE_TOKEN }}
 
     # - name: Download translations
     #   run: npx localazy download
