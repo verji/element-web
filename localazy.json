@@ -1,6 +1,10 @@
 {
     "download": {
-        "files": "element-web/i18n/langFiles/${lang}.json"
+        "files": "i18n/langFiles/${lang}.json"
+    },
+    "upload": {
+        "type": "json",
+        "files": "i18n/langFiles/${lang}.json"
     }
 
 }
