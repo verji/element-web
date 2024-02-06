@@ -22,10 +22,13 @@ jobs:
     - name: Install dependencies
       run: yarn install
 
-    - name: Download translations
-      run: npx localazy download
-      env:
-        LOCALAZY_READ_KEY: ${{ secrets.LOCALAZY_READ_TOKEN }}
+    - name: Localazy Download
+      uses: localazy/download@v1.1.0
+
+    # - name: Download translations
+    #   run: npx localazy download
+    #   env:
+    #     LOCALAZY_READ_KEY: ${{ secrets.LOCALAZY_READ_TOKEN }}
 
     - name: Merge translations
       run: node ./i18n/mergeLanguages.js
