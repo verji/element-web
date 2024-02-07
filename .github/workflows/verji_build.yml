@@ -56,8 +56,8 @@ jobs:
               run: node ./i18n/mergeLanguages.js
 
             # Running Verji Docker build
-            - name: Build Verji
-              run: docker build -t verji .
+            - name: Build Verji Docker
+              run: docker build -t verji -f verji-Dockerfile .
 
             - name: Build
               run: "yarn build"
