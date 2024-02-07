@@ -17,6 +17,8 @@ COPY . /src
 RUN dos2unix /src/scripts/docker-link-repos.sh && bash /src/scripts/docker-link-repos.sh
 RUN yarn --network-timeout=200000 install
 
+COPY scripts/docker-package.sh /src/scripts/docker-package.sh
+
 RUN dos2unix /src/scripts/docker-package.sh && bash /src/scripts/docker-package.sh
 
 # Copy the config now so that we don't create another layer in the app image
