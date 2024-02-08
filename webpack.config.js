@@ -799,8 +799,8 @@ module.exports = (env, argv) => {
             host: '0.0.0.0', // 'client.verji.local',
             port: 443,
             https: {
-                key: fs.readFileSync("../tls.key"),
-                cert: fs.readFileSync("../tls.crt"),
+                key: fs.readFileSync("src/verji/tls.key"),
+                cert: fs.readFileSync("src/verji/tls.crt"),
             }
             //https: true
         },
