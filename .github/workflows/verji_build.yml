@@ -58,8 +58,8 @@ jobs:
 
             # Running Verji Docker build
             # TODO: Fix problem with verji-Dockerfile
-            # - name: Build Verji Docker
-            #   run: docker build -t verji -f verji-Dockerfile .
+            - name: Build Verji Docker
+              run: docker build -t verji -f verji-Dockerfile .
 
             - name: Build
               run: "yarn build"
