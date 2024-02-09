@@ -67,4 +67,4 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: custom verjiTranslations
-                path: i18n\verjiTranslations.json
+                path: ./i18n/verjiTranslations.json
