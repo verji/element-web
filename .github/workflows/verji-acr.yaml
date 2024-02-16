@@ -47,18 +47,18 @@ jobs:
                   username: ${{ secrets.ACR_USERNAME }}
                   password: ${{ secrets.ACR_PASSWORD }}
           
-            - name: Docker meta
-              id: meta
-              uses: docker/metadata-action@dbef88086f6cef02e264edb7dbf63250c17cef6c # v5
-              with:
-                  images: |
-                      vectorim/element-web
-                  tags: |
-                      type=ref,event=branch
-                      type=ref,event=tag
-                  flavor: |
-                      latest=${{ contains(github.ref_name, '-rc.') && 'false' || 'auto' }}
-                      ${{ matrix.flavor }}
+            # - name: Docker meta
+            #   id: meta
+            #   uses: docker/metadata-action@dbef88086f6cef02e264edb7dbf63250c17cef6c # v5
+            #   with:
+            #       images: |
+            #           vectorim/element-web
+            #       tags: |
+            #           type=ref,event=branch
+            #           type=ref,event=tag
+            #       flavor: |
+            #           latest=${{ contains(github.ref_name, '-rc.') && 'false' || 'auto' }}
+            #           ${{ matrix.flavor }}
 
             - name: Build and push
               uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5
@@ -66,14 +66,15 @@ jobs:
                   context: .
                   push: true
                   platforms: linux/amd64,linux/arm64
-                  tags: ${{ steps.meta.outputs.tags }}
+                  tags: acrverjing.azurecr.io/verji-element-app-image:${{ env.RELEASE_VERSION }}
+#                  tags: ${{ steps.meta.outputs.tags }}
                   labels: ${{ steps.meta.outputs.labels }}
 
-            - name: Update repo description
-              if: matrix.variant == 'vanilla'
-              uses: peter-evans/dockerhub-description@e98e4d1628a5f3be2be7c231e50981aee98723ae # v4
-              continue-on-error: true
-              with:
-                  username: ${{ secrets.DOCKERHUB_USERNAME }}
-                  password: ${{ secrets.DOCKERHUB_TOKEN }}
-                  repository: vectorim/element-web
+            # - name: Update repo description
+            #   if: matrix.variant == 'vanilla'
+            #   uses: peter-evans/dockerhub-description@e98e4d1628a5f3be2be7c231e50981aee98723ae # v4
+            #   continue-on-error: true
+            #   with:
+            #       username: ${{ secrets.DOCKERHUB_USERNAME }}
+            #       password: ${{ secrets.DOCKERHUB_TOKEN }}
+            #       repository: vectorim/element-web
