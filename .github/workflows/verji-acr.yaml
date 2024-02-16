@@ -18,9 +18,9 @@ jobs:
                 include:
                     - variant: vanilla
                     # Variant we ship to aid ESS in providing a build on the OpenCoDE platform including specific modules
-                    - variant: opendesk
-                      flavor: suffix=-opendesk,onlatest=true
-                      prepare: mv variants/openDesk/* .
+                    # - variant: opendesk
+                    #   flavor: suffix=-opendesk,onlatest=true
+                    #   prepare: mv variants/openDesk/* .
         steps:
             - uses: actions/checkout@v4
               with:
