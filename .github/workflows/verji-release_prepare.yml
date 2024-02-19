@@ -2,11 +2,11 @@ name: Verji Cut branches
 on:
     workflow_dispatch:
         inputs:
-            element-desktop:
-                description: Prepare element-desktop
-                required: true
-                type: boolean
-                default: true
+            # element-desktop:
+            #     description: Prepare element-desktop
+            #     required: true
+            #     type: boolean
+            #     default: true
             element-web:
                 description: Prepare element-web
                 required: true
@@ -27,7 +27,7 @@ jobs:
         runs-on: ubuntu-latest
         env:
             # The order is specified bottom-up to avoid any races for allchange
-            REPOS: matrix-js-sdk matrix-react-sdk element-web element-desktop
+            REPOS: matrix-js-sdk matrix-react-sdk element-web #element-desktop
         steps:
             # - name: Checkout Element Desktop
             #   uses: actions/checkout@v4
