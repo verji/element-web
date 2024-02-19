@@ -38,7 +38,7 @@ jobs:
             #       ref: staging
             #       fetch-depth: 0
             #       fetch-tags: true
-            #       token: ${{ secrets.ELEMENT_BOT_TOKEN }}
+            #       token: ${{ secrets.VERJI_BOT_TOKEN }}
             - name: Checkout Element Web
               uses: actions/checkout@v4
               if: inputs.element-web
@@ -48,7 +48,7 @@ jobs:
                   ref: staging
                   fetch-depth: 0
                   fetch-tags: true
-                  token: ${{ secrets.ELEMENT_BOT_TOKEN }}
+                  token: ${{ secrets.VERJI_BOT_TOKEN }}
             - name: Checkout Matrix React SDK
               uses: actions/checkout@v4
               if: inputs.matrix-react-sdk
@@ -58,7 +58,7 @@ jobs:
                   ref: staging
                   fetch-depth: 0
                   fetch-tags: true
-                  token: ${{ secrets.ELEMENT_BOT_TOKEN }}
+                  token: ${{ secrets.VERJI_BOT_TOKEN }}
             - name: Checkout Matrix JS SDK
               uses: actions/checkout@v4
               if: inputs.matrix-js-sdk
@@ -68,12 +68,12 @@ jobs:
                   ref: staging
                   fetch-depth: 0
                   fetch-tags: true
-                  token: ${{ secrets.ELEMENT_BOT_TOKEN }}
+                  token: ${{ secrets.VERJI_BOT_TOKEN }}
 
             - name: Merge develop
               run: |
                   git config --global user.email "development@rosberg.com"
-                  git config --global user.name "RiotRobot"
+                  git config --global user.name "verji-bot"
                   for REPO in $REPOS; do [ -d "$REPO" ] && git -C "$REPO" merge origin/verji-develop; done
 
             - name: Push staging
@@ -85,7 +85,7 @@ jobs:
               with:
                   ref: verji-staging
                   repo: verji/matrix-js-sdk
-                  repo-token: ${{ secrets.ELEMENT_BOT_TOKEN }}
+                  repo-token: ${{ secrets.VERJI_BOT_TOKEN }}
                   wait-interval: 10
                   check-name: draft
                   allowed-conclusions: success
@@ -96,7 +96,7 @@ jobs:
               with:
                   ref: verji-staging
                   repo: verji/matrix-react-sdk
-                  repo-token: ${{ secrets.ELEMENT_BOT_TOKEN }}
+                  repo-token: ${{ secrets.VERJI_BOT_TOKEN }}
                   wait-interval: 10
                   check-name: draft
                   allowed-conclusions: success
@@ -107,7 +107,7 @@ jobs:
               with:
                   ref: verji-staging
                   repo: verji/element-web
-                  repo-token: ${{ secrets.ELEMENT_BOT_TOKEN }}
+                  repo-token: ${{ secrets.VERJI_BOT_TOKEN }}
                   wait-interval: 10
                   check-name: draft
                   allowed-conclusions: success
@@ -118,7 +118,7 @@ jobs:
             #   with:
             #       ref: staging
             #       repo: element-hq/element-desktop
-            #       repo-token: ${{ secrets.ELEMENT_BOT_TOKEN }}
+            #       repo-token: ${{ secrets.VERJI_BOT_TOKEN }}
             #       wait-interval: 10
             #       check-name: draft
             #       allowed-conclusions: success
