@@ -1,4 +1,4 @@
-name: Cut branches
+name: Verji Cut branches
 on:
     workflow_dispatch:
         inputs:

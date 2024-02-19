@@ -1,4 +1,4 @@
-name: Release Drafter
+name: Verji Release Drafter
 on:
     push:
         branches: [staging]

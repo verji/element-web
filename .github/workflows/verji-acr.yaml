@@ -1,4 +1,4 @@
-name: Azure Container Registry
+name: Verji Azure Container Registry
 on:
     workflow_dispatch: {}
     # push:

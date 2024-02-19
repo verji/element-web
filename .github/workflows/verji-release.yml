@@ -1,4 +1,4 @@
-name: Release Process
+name: Verji Release Process
 on:
     workflow_dispatch:
         inputs:
