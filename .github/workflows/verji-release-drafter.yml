@@ -1,11 +1,11 @@
 name: Verji Release Drafter
 on:
     push:
-        branches: [staging]
+        branches: [verji-staging]
     workflow_dispatch: {}
 concurrency: ${{ github.workflow }}
 jobs:
     draft:
-        uses: matrix-org/matrix-js-sdk/.github/workflows/release-drafter-workflow.yml@develop
+        uses: verji/matrix-js-sdk/.github/workflows/verji-release-drafter-workflow.yml@verji-develop
         with:
             include-changes: matrix-react-sdk
