@@ -45,7 +45,7 @@ jobs:
               with:
                   repository: verji/element-web
                   path: element-web
-                  ref: staging
+                  ref: verji-staging
                   fetch-depth: 0
                   fetch-tags: true
                   token: ${{ secrets.VERJI_BOT_TOKEN }}
@@ -55,7 +55,7 @@ jobs:
               with:
                   repository: verji/matrix-react-sdk
                   path: matrix-react-sdk
-                  ref: staging
+                  ref: verji-staging
                   fetch-depth: 0
                   fetch-tags: true
                   token: ${{ secrets.VERJI_BOT_TOKEN }}
@@ -65,7 +65,7 @@ jobs:
               with:
                   repository: verji/matrix-js-sdk
                   path: matrix-js-sdk
-                  ref: staging
+                  ref: verji-staging
                   fetch-depth: 0
                   fetch-tags: true
                   token: ${{ secrets.VERJI_BOT_TOKEN }}
