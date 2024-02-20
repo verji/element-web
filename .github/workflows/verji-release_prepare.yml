@@ -70,13 +70,13 @@ jobs:
                   fetch-tags: true
                   token: ${{ secrets.VERJI_BOT_TOKEN }}
 
-            - name: Merge develop
+            - name: Merge verji-develop
               run: |
                   git config --global user.email "development@rosberg.com"
                   git config --global user.name "verji-bot"
                   for REPO in $REPOS; do [ -d "$REPO" ] && git -C "$REPO" merge origin/verji-develop; done
 
-            - name: Push staging
+            - name: Push verji-staging
               run: for REPO in $REPOS; do [ -d "$REPO" ] && git -C "$REPO" push origin verji-staging; done
 
             - name: Wait for matrix-js-sdk draft
