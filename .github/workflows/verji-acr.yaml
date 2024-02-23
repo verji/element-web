@@ -31,7 +31,6 @@ jobs:
               uses: onyxmueller/build-tag-number@v1
               with:
                 token: ${{ secrets.github_token }}
-                prefix: "vrj-" #${{ github.github.ref_name }}
         
             # - run: |
             #       write-output $env:build_number
@@ -82,7 +81,7 @@ jobs:
                   build-args: |
                     BUILD_ID=${{ steps.buildnumber.outputs.build_number }}
                   platforms: linux/amd64,linux/arm64
-                  tags: acrverjing.azurecr.io/verji-element-app-image:${{ steps.buildnumber.outputs.build_number }} #${{ env.RELEASE_VERSION }}
+                  tags: acrverjing.azurecr.io/verji-element-app-image:${{ env.RELEASE_VERSION }}
                   labels: ${{ steps.meta.outputs.labels }}
 
             # - name: Update repo description

@@ -16,6 +16,6 @@ then
 fi
 
 DIST_VERSION=$("$DIR"/normalize-version.sh "$DIST_VERSION")
-DIST_VERSION="$DIST_VERSION-$1"
+DIST_VERSION="$DIST_VERSION-va-$1"
 VERSION=$DIST_VERSION yarn build
 echo "$DIST_VERSION" > /src/webapp/version
