@@ -31,13 +31,13 @@ jobs:
               uses: onyxmueller/build-tag-number@v1
               with:
                 token: ${{ secrets.github_token }}
-                prefix: ${{ github.github.ref_name }}
+                prefix: "vrj-" #${{ github.github.ref_name }}
         
-            - run: |
-                  write-output $env:build_number
-              env:
-                build_number: ${{ steps.buildnumber.outputs.build_number }}
-              shell: pwsh
+            # - run: |
+            #       write-output $env:build_number
+            #   env:
+            #     build_number: ${{ steps.buildnumber.outputs.build_number }}
+            #   shell: pwsh
 
 
             - name: Prepare
@@ -79,6 +79,8 @@ jobs:
               with:
                   context: .
                   push: true
+                  build-args: |
+                    BUILD_ID=${{ steps.buildnumber.outputs.build_number }}
                   platforms: linux/amd64,linux/arm64
                   tags: acrverjing.azurecr.io/verji-element-app-image:${{ steps.buildnumber.outputs.build_number }} #${{ env.RELEASE_VERSION }}
                   labels: ${{ steps.meta.outputs.labels }}
