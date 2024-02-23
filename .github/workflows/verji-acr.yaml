@@ -26,6 +26,20 @@ jobs:
               with:
                   fetch-depth: 0 # needed for docker-package to be able to calculate the version
 
+            - name: Generate build number
+              id: buildnumber
+              uses: onyxmueller/build-tag-number@v1
+              with:
+                token: ${{ secrets.github_token }}
+                prefix: ${{ github.github.ref_name }}
+        
+            - run: |
+                  write-output $env:build_number
+              env:
+                build_number: ${{ steps.buildnumber.outputs.build_number }}
+              shell: pwsh
+
+
             - name: Prepare
               if: matrix.prepare
               run: ${{ matrix.prepare }}
@@ -66,8 +80,7 @@ jobs:
                   context: .
                   push: true
                   platforms: linux/amd64,linux/arm64
-                  tags: acrverjing.azurecr.io/verji-element-app-image:taj240216-1 #${{ env.RELEASE_VERSION }}
-#                  tags: ${{ steps.meta.outputs.tags }}
+                  tags: acrverjing.azurecr.io/verji-element-app-image:${{ steps.buildnumber.outputs.build_number }} #${{ env.RELEASE_VERSION }}
                   labels: ${{ steps.meta.outputs.labels }}
 
             # - name: Update repo description
