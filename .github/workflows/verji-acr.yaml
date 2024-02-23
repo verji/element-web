@@ -69,6 +69,7 @@ jobs:
                   tags: |
                       type=ref,event=branch
                       type=ref,event=tag
+                      type=raw,value=${{ env.RELEASE_VERSION }}
                   flavor: |
                       latest=${{ contains(github.ref_name, '-rc.') && 'false' || 'auto' }}
                       ${{ matrix.flavor }}
