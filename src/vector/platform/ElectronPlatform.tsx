@@ -57,6 +57,8 @@ interface SquirrelUpdate {
     updateURL: string;
 }
 
+const SSO_ID_KEY = "element-desktop-ssoid";
+
 const isMac = navigator.platform.toUpperCase().includes("MAC");
 
 function platformFriendlyName(): string {
@@ -375,10 +377,10 @@ export default class ElectronPlatform extends VectorBasePlatform {
         return this.ipc.call("getAvailableSpellCheckLanguages");
     }
 
-    public getSSOCallbackUrl(fragmentAfterLogin: string): URL {
+    public getSSOCallbackUrl(fragmentAfterLogin?: string): URL {
         const url = super.getSSOCallbackUrl(fragmentAfterLogin);
         url.protocol = "element";
-        url.searchParams.set("element-desktop-ssoid", this.ssoID);
+        url.searchParams.set(SSO_ID_KEY, this.ssoID);
         return url;
     }
 
@@ -444,11 +446,18 @@ export default class ElectronPlatform extends VectorBasePlatform {
 
     public async getOidcClientMetadata(): Promise<OidcRegistrationClientMetadata> {
         const baseMetadata = await super.getOidcClientMetadata();
+        const redirectUri = this.getSSOCallbackUrl();
+        redirectUri.searchParams.delete(SSO_ID_KEY); // it will be shuttled via the state param instead
         return {
             ...baseMetadata,
             applicationType: "native",
+            redirectUris: [redirectUri.href],
             // XXX: This should be overridable in config
             clientUri: "https://element.io",
         };
+    }
+
+    public getOidcClientState(): string {
+        return `:${SSO_ID_KEY}:${this.ssoID}`;
     }
 }
