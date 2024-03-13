@@ -30,14 +30,13 @@ jobs:
               id: buildnumber
               uses: onyxmueller/build-tag-number@v1
               with:
-                token: ${{ secrets.github_token }}
-        
+                  token: ${{ secrets.github_token }}
+
             # - run: |
             #       write-output $env:build_number
             #   env:
             #     build_number: ${{ steps.buildnumber.outputs.build_number }}
             #   shell: pwsh
-
 
             - name: Prepare
               if: matrix.prepare
@@ -51,7 +50,7 @@ jobs:
               with:
                   install: true
 
-            - name: Login to Azure ACR 
+            - name: Login to Azure ACR
               uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3
               with:
                   # username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -59,7 +58,7 @@ jobs:
                   registry: acrverjing.azurecr.io
                   username: ${{ secrets.ACR_USERNAME }}
                   password: ${{ secrets.ACR_PASSWORD }}
-          
+
             - name: Docker meta
               id: meta
               uses: docker/metadata-action@dbef88086f6cef02e264edb7dbf63250c17cef6c # v5
@@ -80,7 +79,7 @@ jobs:
                   context: .
                   push: true
                   build-args: |
-                    BUILD_ID=${{ steps.buildnumber.outputs.build_number }}
+                      BUILD_ID=${{ steps.buildnumber.outputs.build_number }}
                   platforms: linux/amd64,linux/arm64
                   #tags: acrverjing.azurecr.io/verji-element-app-image:${{ env.RELEASE_VERSION }}
                   tags: ${{ steps.meta.outputs.tags }}
