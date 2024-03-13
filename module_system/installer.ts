@@ -67,7 +67,7 @@ export function installer(config: BuildConfig): void {
         const optionalDepNames = getOptionalDepNames(pkgJsonStr);
         const installedModules = optionalDepNames.filter((d) => !currentOptDeps.includes(d));
 
-        if(!config.skip_module_dependency_version_check) {
+        if (!config.skip_module_dependency_version_check) {
             // Ensure all the modules are compatible. We check them all and report at the end to
             // try and save the user some time debugging this sort of failure.
             const ourApiVersion = getTopLevelDependencyVersion(moduleApiDepName);

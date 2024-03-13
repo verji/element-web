@@ -22,7 +22,7 @@ export type BuildConfig = {
     // configs are very possible.
 
     // Allow config to skip dependency version check
-    skip_module_dependency_version_check?: boolean
+    skip_module_dependency_version_check?: boolean;
 
     // The module references to include in the build.
     modules?: string[];
