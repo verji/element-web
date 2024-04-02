@@ -9,6 +9,8 @@ ARG REACT_SDK_BRANCH="master"
 ARG JS_SDK_REPO="https://github.com/matrix-org/matrix-js-sdk.git"
 ARG JS_SDK_BRANCH="master"
 
+ARG BUILD_ID
+
 RUN apt-get update && apt-get install -y git dos2unix
 
 WORKDIR /src
@@ -17,7 +19,7 @@ COPY . /src
 RUN dos2unix /src/scripts/docker-link-repos.sh && bash /src/scripts/docker-link-repos.sh
 RUN yarn --network-timeout=200000 install
 
-RUN dos2unix /src/scripts/docker-package.sh && bash /src/scripts/docker-package.sh
+RUN dos2unix /src/scripts/docker-package.sh && bash /src/scripts/docker-package.sh "$BUILD_ID"
 
 # Copy the config now so that we don't create another layer in the app image
 RUN cp /src/config.sample.json /src/webapp/config.json
