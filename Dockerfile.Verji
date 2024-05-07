@@ -19,7 +19,7 @@ COPY . /src
 RUN dos2unix /src/scripts/docker-link-repos.sh && bash /src/scripts/docker-link-repos.sh
 RUN yarn --network-timeout=200000 install
 
-RUN dos2unix /src/scripts/docker-package.sh && bash /src/scripts/docker-package.sh "$BUILD_ID"
+# RUN dos2unix /src/scripts/docker-package.sh && bash /src/scripts/docker-package.sh "$BUILD_ID"
 
 # Copy the config now so that we don't create another layer in the app image
 RUN cp /src/config.sample.json /src/webapp/config.json
