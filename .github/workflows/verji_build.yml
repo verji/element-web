@@ -46,4 +46,4 @@ jobs:
             #   run: "./scripts/layered.sh"
 
             - name: Build
-              run: "docker build -f Dockerfile.Verji --build-arg USE_CUSTOM_SDKS=true --build-arg REACT_SDK_REPO=${{ secrets.ReactSdkWithToken }} --build-arg JS_SDK=${{secrets.JsSdkWithToken}}"
+              run: "docker build -f Dockerfile.Verji --build-arg USE_CUSTOM_SDKS=true --build-arg REACT_SDK_REPO=${{ secrets.REACT_SDK_WITH_TOKEN }} --build-arg JS_SDK=${{secrets.JS_SDK_WITH_TOKEN}}"
