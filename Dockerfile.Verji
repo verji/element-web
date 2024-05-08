@@ -8,6 +8,8 @@ ARG REACT_SDK_REPO
 ARG REACT_SDK_BRANCH="verji-develop"
 ARG JS_SDK_REPO
 ARG JS_SDK_BRANCH="verji-develop"
+ARG MODULE_API_REPO
+ARG MODULE_API_BRANCH="verji-main"
 
 ARG BUILD_ID
 
@@ -18,6 +20,7 @@ WORKDIR /src
 
 COPY . /src
 RUN dos2unix /src/scripts/docker-link-repos.sh && bash /src/scripts/docker-link-repos.sh
+RUN dos2unix /src/scripts/docker-link-module-api.sh && bash /src/scripts/docker-link-module-api.sh
 RUN yarn --network-timeout=200000 install
 
 RUN dos2unix /src/scripts/docker-package.sh && bash /src/scripts/docker-package.sh "$BUILD_ID"
