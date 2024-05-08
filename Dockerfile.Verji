@@ -12,6 +12,7 @@ ARG JS_SDK_BRANCH="verji-develop"
 ARG BUILD_ID
 
 RUN apt-get update && apt-get install -y git dos2unix
+RUN echo "My build ID:" ${BUILD_ID}
 
 WORKDIR /src
 
