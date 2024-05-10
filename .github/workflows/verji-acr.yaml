@@ -84,11 +84,10 @@ jobs:
                     REACT_SDK_REPO=${{ secrets.REACT_SDK_WITH_TOKEN }}
                     JS_SDK_REPO=${{secrets.JS_SDK_WITH_TOKEN}}
                     MODULE_API_REPO=${{secrets.MODULE_API_WITH_TOKEN}}
-                    BUILD_ID=${{github.ref}}
                     BUILD_ID=${{ steps.buildnumber.outputs.build_number }}
                   platforms: linux/amd64,linux/arm64
                   #tags: acrverjing.azurecr.io/verji-element-app-image:${{ env.RELEASE_VERSION }}
-                  tags: ${{ steps.meta.outputs.tags }}
+                  tags: ${{ steps.meta.outputs.tags }} "-" ${{steps.buildnumber.outputs.build_number}}
                   labels: ${{ steps.meta.outputs.labels }}
 
             # - name: Update repo description
