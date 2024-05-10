@@ -87,7 +87,7 @@ jobs:
                     BUILD_ID=${{ steps.buildnumber.outputs.build_number }}
                   platforms: linux/amd64,linux/arm64
                   #tags: acrverjing.azurecr.io/verji-element-app-image:${{ env.RELEASE_VERSION }}
-                  tags: ${{ steps.meta.outputs.tags }} "-" ${{steps.buildnumber.outputs.build_number}}
+                  tags: ${{ steps.meta.outputs.tags }}-${{steps.buildnumber.outputs.build_number}}
                   labels: ${{ steps.meta.outputs.labels }}
 
             # - name: Update repo description
