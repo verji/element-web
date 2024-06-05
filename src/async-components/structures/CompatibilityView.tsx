@@ -54,19 +54,27 @@ const CompatibilityView: React.FC<IProps> = ({ onAccept }) => {
     ];
     const andCustomUrl = mobileBuilds?.android;
     const fdroidCustomUrl = mobileBuilds?.fdroid;
+    if (andCustomUrl !== null) { // undefined or string
+        android.push(<a
+            href={"https://play.google.com/store/apps/details?id=com.rosberg.verji"}
+            target="_blank"
+            className="mx_ClearDecoration"
+            key="android"
+        >
+            <img height="48" src="themes/element/img/download/google.svg" alt="Google Play Store" />
+        </a>);
+    }
+
     if (andCustomUrl !== null) {
         // undefined or string
-        android.push(
-            <a
-                href={andCustomUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="mx_ClearDecoration"
-                key="android"
-            >
-                <img height="48" src="themes/element/img/download/google.svg" alt="Google Play Store" />
-            </a>,
-        );
+        android.push(<a
+            href={"https://play.google.com/store/apps/details?id=com.rosberg.verji"}
+            target="_blank"
+            className="mx_ClearDecoration"
+            key="fdroid"
+        >
+            <img height="48" src="themes/element/img/download/fdroid.svg" alt="F-Droid" />
+        </a>);
     }
     if (fdroidCustomUrl !== null) {
         // undefined or string
@@ -97,7 +105,7 @@ const CompatibilityView: React.FC<IProps> = ({ onAccept }) => {
             <div className="mx_ErrorView_container">
                 <div className="mx_HomePage_header">
                     <span className="mx_HomePage_logo">
-                        <img height="42" src="themes/element/img/logos/element-logo.svg" alt="Element" />
+                        <img height="42" src="themes/element/img/logos/element-logo.svg" alt="Verji" /> //Verji
                     </span>
                     <h1>{_t("incompatible_browser|title")}</h1>
                 </div>
