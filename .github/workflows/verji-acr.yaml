@@ -8,6 +8,17 @@ on:
     #     - cron: "0 7/12 * * *"
 concurrency: ${{ github.workflow }}-${{ github.ref_name }}
 jobs:
+    rename:
+        runs-on: ubuntu-latest
+
+        steps:
+          - uses: actions/checkout@v4
+
+          - name: Rename file so we use the verji build_config.yaml
+            run: mv build_config.verji.yaml build_config.yaml
+
+          - name: Delete file 
+            run: rm -f file.txt
     buildx:
         name: Docker Buildx
         runs-on: ubuntu-latest
@@ -40,9 +51,6 @@ jobs:
             - name: Prepare
               if: matrix.prepare
               run: ${{ matrix.prepare }}
-
-            - name: Rename file so we use verji build_config
-              run: mv build_config.verji.yaml build_config.yaml
         
             - name: Set up QEMU
               uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3
