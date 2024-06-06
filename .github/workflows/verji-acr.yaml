@@ -17,6 +17,8 @@ jobs:
             run: ls
           - name: Rename file so we use the verji build_config.yaml
             run: mv build_config.verji.yaml build_config.yaml
+          - name: Logging
+            run: ls
     buildx:
         name: Docker Buildx
         runs-on: ubuntu-latest
