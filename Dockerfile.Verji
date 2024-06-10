@@ -18,10 +18,12 @@ RUN echo "My build ID:" ${BUILD_ID}
 
 WORKDIR /src
 #attempt to verify build_config.yaml
-RUN cat build_config.verji.yaml && mv build_config.verji.yaml build_config.yaml && ls >> ls.txt && cat ls.txt
+RUN ls >> ls.txt && cat ls.txt 
+#cat build_config.verji.yaml && mv build_config.verji.yaml build_config.yaml && 
 # RUN cat build_config.yaml
 
 COPY . /src
+RUN ls >> ls2.txt && cat ls2.txt 
 RUN dos2unix /src/scripts/docker-link-repos.sh && bash /src/scripts/docker-link-repos.sh
 RUN dos2unix /src/scripts/docker-link-module-api.sh && bash /src/scripts/docker-link-module-api.sh
 RUN yarn --network-timeout=200000 install
