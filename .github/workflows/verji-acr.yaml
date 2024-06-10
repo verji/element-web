@@ -8,17 +8,6 @@ on:
     #     - cron: "0 7/12 * * *"
 concurrency: ${{ github.workflow }}-${{ github.ref_name }}
 jobs:
-    rename:
-        name: Rename build_config (use build_config.verji.yaml)
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v4
-          - name: Logging
-            run: ls
-          - name: Rename file so we use the verji build_config.yaml
-            run: mv build_config.verji.yaml build_config.yaml
-          - name: Logging
-            run: ls
     buildx:
         name: Docker Buildx
         runs-on: ubuntu-latest
