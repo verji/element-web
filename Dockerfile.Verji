@@ -18,7 +18,6 @@ RUN echo "My build ID:" ${BUILD_ID}
 
 WORKDIR /src
 #attempt to verify build_config.yaml
-RUN cd /app
 RUN cd ls
 RUN cat build_config.yaml
 
