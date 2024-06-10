@@ -17,6 +17,10 @@ RUN apt-get update && apt-get install -y git dos2unix
 RUN echo "My build ID:" ${BUILD_ID}
 
 WORKDIR /src
+#attempt to verify build_config.yaml
+RUN cd /app
+RUN cd ls
+RUN cat build_config.yaml
 
 COPY . /src
 RUN dos2unix /src/scripts/docker-link-repos.sh && bash /src/scripts/docker-link-repos.sh
@@ -37,8 +41,10 @@ COPY --from=builder /src/webapp /app
 # Override default nginx config
 COPY /nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 
+#attempt to verify build_config.yaml
 RUN cd /app
 RUN cd ls
+RUN cat build_config.yaml
 
 RUN rm -rf /usr/share/nginx/html \
   && ln -s /app /usr/share/nginx/html
