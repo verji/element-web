@@ -28,5 +28,5 @@ skip_module_dependency_version_check: true
 #
 # The values of this are provided to `yarn add` for inclusion.
 modules:
-    - "@verji/verji-security-module"
-    - "@verji/verji-usermenu-module"
+    #- "@verji/verji-security-module"
+    #- "@verji/verji-usermenu-module"
