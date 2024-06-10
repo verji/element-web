@@ -95,7 +95,8 @@ jobs:
                     JS_SDK_REPO=${{secrets.JS_SDK_WITH_TOKEN}}
                     MODULE_API_REPO=${{secrets.MODULE_API_WITH_TOKEN}}
                     BUILD_ID=${{ steps.buildnumber.outputs.build_number }}
-                    progress=plain
+                    --progress=plain
+                    --no-cache
                   platforms: linux/amd64,linux/arm64
                   #tags: acrverjing.azurecr.io/verji-element-app-image:${{ env.RELEASE_VERSION }}
                   tags: ${{ steps.meta.outputs.tags }}-${{steps.buildnumber.outputs.build_number}}
