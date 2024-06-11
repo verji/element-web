@@ -5,7 +5,7 @@ FROM node:20-bullseye as builder
 # images of element-web develop.
 ARG USE_CUSTOM_SDKS=true
 ARG REACT_SDK_REPO
-ARG REACT_SDK_BRANCH="verji-develop"
+ARG REACT_SDK_BRANCH="rm/1890-HoC-part2a"
 ARG JS_SDK_REPO
 ARG JS_SDK_BRANCH="verji-develop"
 ARG MODULE_API_REPO
