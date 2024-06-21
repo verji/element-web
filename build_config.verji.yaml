@@ -30,3 +30,4 @@ skip_module_dependency_version_check: true
 modules:
     - "@verji/verji-security-module"
     - "@verji/verji-usermenu-module"
+    - "@verji/verji-onboarding-module"
