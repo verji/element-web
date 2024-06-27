@@ -250,7 +250,9 @@ module.exports = (env, argv) => {
                 "net": false,
                 "tls": false,
                 "crypto": false,
-
+                                //"events":false,
+                //
+                "events": require.resolve("events/"),
                 // Polyfill needed by counterpart
                 "util": require.resolve("util/"),
                 // Polyfill needed by matrix-js-sdk/src/crypto
