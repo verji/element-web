@@ -37,6 +37,25 @@
         form-action 'self' <%= csp_extra_source %>;
         manifest-src 'self' <%= csp_extra_source %>;
     ">
+    <!-- ROSBERG START -->
+    <meta name="apple-mobile-web-app-title" content="Verji">
+    <meta name="application-name" content="Verji">
+    <meta property="og:image" content="<%= require('../../res/vector-icons/mstile-150.png') %>" />
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'none';
+        style-src 'self' 'unsafe-inline' https://euc-widget.freshworks.com;
+        script-src 'self' 'unsafe-eval' https://www.recaptcha.net https://www.gstatic.com https://euc-widget.freshworks.com;
+        img-src * blob: data:;
+        connect-src *;
+        font-src 'self' data:;
+        media-src * blob: data:;
+        child-src * blob: data:;
+        frame-src * blob: data:;
+        form-action 'self';
+        object-src 'self';
+        manifest-src 'self';
+    ">
+    <!-- ROSBERG END -->
     <% for (var i=0; i < htmlWebpackPlugin.files.css.length; i++) {
         var file = htmlWebpackPlugin.files.css[i];
         var match = file.match(/^bundles\/.*?\/theme-(.*)\.css$/);
