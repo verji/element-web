@@ -21,7 +21,7 @@
 #
 # This may be useful during development due to limitations/incompatilibilities in "npm list ..."
 #
-skip_module_dependency_version_check: true
+skip_module_dependency_version_check: false
 
 # The modules to install. See ./docs/modules.md for more information on
 # what modules are.
