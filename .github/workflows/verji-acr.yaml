@@ -1,4 +1,4 @@
-name: Verji Azure Container Registry
+name: Build and push image to Verji Azure Image Registry 
 on:
     workflow_dispatch: {}
     # push:
