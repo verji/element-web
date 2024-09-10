@@ -187,3 +187,21 @@ And to use it we apply this check to the component we wish to control, like this
      or
     {SettingsStore.getValue(UIFeature.HomePageButtons) && showButtons}
 ```
+
+# Custom Verji Modules
+
+Verji uses the matrix/element module system to dynamically build customised features. Some hooks for these customisations needs to be maintained in matrix-react-sdk. We mainly have two types of modules.
+
+* GUI-modules (Custom components)
+    - Uses a lifecycle to swap an existing component, with our custom component(s)
+* Extenstion-modules
+    - Uses hooks to inject custom logic and features
+
+## Verji GUI-Modules
+- [@verji/verji-usermenu-module](https://github.com/verji/verji-usermenu-module)
+- [@verji/verji-onboarding-module](https://github.com/verji/verji-onboarding-module)
+- [@verji/verji-news-module](https://github.com/verji/verji-news-module)
+
+## Verji Extension Modules
+- [@verji/verji-usersearch-module](https://github.com/verji/verji-usersearch-module)
+- [@verji/verji-cryptosetup-module](https://github.com/verji/verji-cryptosetup-module)
