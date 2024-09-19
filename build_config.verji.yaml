@@ -32,3 +32,4 @@ modules:
     - "@verji/verji-usermenu-module"
     - "@verji/verji-onboarding-module"
     - "@verji/verji-usersearch-module"
+    - "@verji/verji-news-module"
