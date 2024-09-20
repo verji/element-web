@@ -167,7 +167,8 @@
     Used by : RoomList.tsx
 -   `UIFeature.showMembersListForSpaces` - Shows/hides the memberslist for metaspaces.
     Used by : SpaceRoomView.tsx
-
+-   `UIFeature.showRoomMembersInSuggestions` - Shows/hide RoomMembers in InviteDialog/SpotlightDialog suggestions. If false the suggestions will rely on search results
+-   `UIFeature.showRecentsInSuggestions` - Show/Hide the "Recents" Suggestions, in Invite Dialog
 ## How to use feature flags
 First we have to define them in the element framework
 -   UIFeatures.ts : SearchWarning = "UIFeature.SearchWarning"
