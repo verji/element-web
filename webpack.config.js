@@ -254,6 +254,11 @@ module.exports = (env, argv) => {
                 "net": false,
                 "tls": false,
                 "crypto": false,
+                "https": require.resolve("https-browserify"),
+                "http": require.resolve("http-browserify"),
+                "url": require.resolve("url/"),
+                "timers": require.resolve("timers-browserify"),
+                "stream": require.resolve("stream-browserify"),
                                 //"events":false,
                 //
                 "events": require.resolve("events/"),
@@ -755,6 +760,8 @@ module.exports = (env, argv) => {
                     "node_modules/@matrix-org/olm/olm_legacy.js",
                     { from: "config.json", noErrorOnMissing: true },
                     "contribute.json",
+                    "res/verji.rss",
+                    "res/verji2.rss",
                 ],
             }),
 
@@ -792,10 +799,11 @@ module.exports = (env, argv) => {
                 },
             },
 
-            static: {
+            static: [
                 // Where to serve static assets from
-                directory: "./webapp",
-            },
+                {directory: "./webapp" } ,
+                {directory: "./" },
+            ],            
 
             devMiddleware: {
                 // Only output errors, warnings, or new compilations.
