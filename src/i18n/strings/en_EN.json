@@ -36,5 +36,15 @@
     "unknown_device": "Unknown device",
     "use_brand_on_mobile": "Use %(brand)s on mobile",
     "web_default_device_name": "%(appName)s: %(browserName)s on %(osName)s",
-    "welcome_to_element": "Welcome to Element"
+    "welcome_to_element": "Welcome to Element",
+    "verji": {
+        "operating_messages" : {
+            "title" : "Operating messages",
+            "messages" : "Operating messages from <a>Verji</a>"
+        },
+        "news" : {
+          "title" : "Lates news",
+          "messages" : "News from <a>Verji</a>"
+        }
+    }
 }

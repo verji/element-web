@@ -255,7 +255,7 @@ module.exports = (env, argv) => {
                 "tls": false,
                 "crypto": false,
                 "https": require.resolve("https-browserify"),
-                "http": require.resolve("http-browserify"),
+                "http": require.resolve("stream-http"),
                 "url": require.resolve("url/"),
                 "timers": require.resolve("timers-browserify"),
                 "stream": require.resolve("stream-browserify"),

@@ -48,5 +48,15 @@
   "unknown_device": "Ukjent enhet",
   "use_brand_on_mobile": "Bruk %(brand)s på mobil",
   "web_default_device_name": "%(appName)s: %(browserName)s på %(osName)s",
-  "welcome_to_element": "Velkommen til Element"
+  "welcome_to_element": "Velkommen til Element",
+  "verji": {
+    "operating_messages" : {
+      "title" : "Driftsmeldinger",
+      "messages" : "Driftsmeldinger fra Verji"
+    },
+    "news" : {
+      "title" : "Nyheter",
+      "messages" : "Nyheter fra Verji"
+    }
+  }
 }
