@@ -84,7 +84,6 @@
     Used by : SetupEncryptionBody.tsx
 -   `UIFeature.accountSendAccountEvent` - Shows/hides dev tools options to send account events.
     Used by : AccountData.tsx
-
 -   `UIFeature.accountSendRoomEvent` - Shows/hides dev tools options to send room events.
     Used by : AccountData.tsx
 -   `UIFeature.enableLoginPage` - Enables/disables the login page.
@@ -93,7 +92,7 @@
     Used by : CreationGrouper.tsx
 -   `UIFeature.enableRoomDevTools` - Enables/disables dev tools in the room
     Used by : DevtoolsDialog.tsx
--   `UIFeature.exportDefaultSizeLimit` - False sets the limit to 20MB vs 8MB and the option to set size.
+-   `UIFeature.exportDefaultSizeLimit` - False sets the limit to 20MB and removes UI to adjust limit vs 8MB and the option to set size.
     Used by : ExportDialog.tsx
 -   `UIFeature.allExportTypes` - False Sets the export to export from beginning, else use a timeline.
     Used by : ExportDialog.tsx
@@ -169,6 +168,8 @@
     Used by : SpaceRoomView.tsx
 -   `UIFeature.showRoomMembersInSuggestions` - Shows/hide RoomMembers in InviteDialog/SpotlightDialog suggestions. If false the suggestions will rely on search results
 -   `UIFeature.showRecentsInSuggestions` - Show/Hide the "Recents" Suggestions, in Invite Dialog
+-   `UIFeature.allowDirectUserInvite` - Determines whether or not you are allowed to invite a user directly by user id.
+    Used by : [verji-onboarding-module] - CustomInviteDialog.tsx
 ## How to use feature flags
 First we have to define them in the element framework
 -   UIFeatures.ts : SearchWarning = "UIFeature.SearchWarning"
