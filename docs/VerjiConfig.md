@@ -170,6 +170,8 @@
 -   `UIFeature.showRecentsInSuggestions` - Show/Hide the "Recents" Suggestions, in Invite Dialog
 -   `UIFeature.allowDirectUserInvite` - Determines whether or not you are allowed to invite a user directly by user id.
     Used by : [verji-onboarding-module] - CustomInviteDialog.tsx
+-   `UIFeature.searchInAllRooms` - Shows/hides "All rooms" tab in  when you search in rooms.
+    Used by : SearchBar.tsx
 ## How to use feature flags
 First we have to define them in the element framework
 -   UIFeatures.ts : SearchWarning = "UIFeature.SearchWarning"
