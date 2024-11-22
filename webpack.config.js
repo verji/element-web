@@ -281,10 +281,6 @@ module.exports = (env, argv) => {
                 // there is no need for webpack to parse them - they can just be
                 // included as-is.
                 /highlight\.js[\\/]lib[\\/]languages/,
-
-                // olm takes ages for webpack to process, and it's already heavily
-                // optimised, so there is little to gain by us uglifying it.
-                /olm[\\/](javascript[\\/])?olm\.js$/,
             ],
             rules: [
                 useHMR && {
@@ -451,20 +447,6 @@ module.exports = (env, argv) => {
                     ],
                 },
                 {
-                    // the olm library wants to load its own wasm, rather than have webpack do it.
-                    // We therefore use the `file-loader` to tell webpack to dump the contents to
-                    // a separate file and return the name, and override the default `type` for `.wasm` files
-                    // (which is `webassembly/experimental` under webpack 4) to stop webpack trying to interpret
-                    // the filename as webassembly. (see also https://github.com/webpack/webpack/issues/6725)
-                    test: /olm\.wasm$/,
-                    loader: "file-loader",
-                    type: "javascript/auto",
-                    options: {
-                        name: "[name].[hash:7].[ext]",
-                        outputPath: ".",
-                    },
-                },
-                {
                     // Fix up the name of the opus-recorder worker (react-sdk dependency).
                     // We more or less just want it to be clear it's for opus and not something else.
                     test: /encoderWorker\.min\.js$/,
@@ -505,8 +487,11 @@ module.exports = (env, argv) => {
                     },
                 },
                 {
-                    // Same deal as olm.wasm: the decoderWorker wants to load the wasm artifact
-                    // itself.
+                    // The decoderWorker wants to load its own wasm, rather than have webpack do it.
+                    // We therefore use the `file-loader` to tell webpack to dump the contents to
+                    // a separate file and return the name, and override the default `type` for `.wasm` files
+                    // (which is `webassembly/experimental` under webpack 4) to stop webpack trying to interpret
+                    // the filename as webassembly. (see also https://github.com/webpack/webpack/issues/6725)
                     test: /decoderWorker\.min\.wasm$/,
                     loader: "file-loader",
                     type: "javascript/auto",
@@ -664,8 +649,8 @@ module.exports = (env, argv) => {
 
             // This exports our CSS using the splitChunks and loaders above.
             new MiniCssExtractPlugin({
-                filename: useHMR ? "bundles/[name].css" : "bundles/[hash]/[name].css",
-                chunkFilename: useHMR ? "bundles/[name].css" : "bundles/[hash]/[name].css",
+                filename: useHMR ? "bundles/[name].css" : "bundles/[fullhash]/[name].css",
+                chunkFilename: useHMR ? "bundles/[name].css" : "bundles/[fullhash]/[name].css",
                 ignoreOrder: false, // Enable to remove warnings about conflicting order
             }),
 
@@ -736,8 +721,8 @@ module.exports = (env, argv) => {
                     sourcemaps: {
                         paths: "./webapp/bundles/**",
                     },
-                    errorHandler: (err, invokeErr, compilation) => {
-                        compilation.warnings.push("Sentry CLI Plugin: " + err.message);
+                    errorHandler: (err) => {
+                        console.warn("Sentry CLI Plugin: " + err.message);
                         console.log(`::warning title=Sentry error::${err.message}`);
                     },
                 }),
@@ -757,7 +742,6 @@ module.exports = (env, argv) => {
                     { from: "vector-icons/**", context: path.resolve(__dirname, "res") },
                     { from: "decoder-ring/**", context: path.resolve(__dirname, "res") },
                     { from: "media/**", context: path.resolve(__dirname, "node_modules/matrix-react-sdk/res/") },
-                    "node_modules/@matrix-org/olm/olm_legacy.js",
                     { from: "config.json", noErrorOnMissing: true },
                     "contribute.json",
                     "res/verji.rss",
@@ -783,9 +767,9 @@ module.exports = (env, argv) => {
             // directory and symlink it into place - this allows users who loaded
             // an older version of the application to continue to access webpack
             // chunks even after the app is redeployed.
-            filename: "bundles/[hash]/[name].js",
-            chunkFilename: "bundles/[hash]/[name].js",
-            webassemblyModuleFilename: "bundles/[hash]/[modulehash].wasm",
+            filename: "bundles/[fullhash]/[name].js",
+            chunkFilename: "bundles/[fullhash]/[name].js",
+            webassemblyModuleFilename: "bundles/[fullhash]/[modulehash].wasm",
         },
 
         // configuration for the webpack-dev-server
