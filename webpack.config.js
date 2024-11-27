@@ -254,11 +254,11 @@ module.exports = (env, argv) => {
                 "net": false,
                 "tls": false,
                 "crypto": false,
-                "https": require.resolve("https-browserify"),
+                //"https": require.resolve("https-browserify"), // Uncomment if modules
                 "http": require.resolve("stream-http"),
-                "url": require.resolve("url/"),
-                "timers": require.resolve("timers-browserify"),
-                "stream": require.resolve("stream-browserify"),
+                //"url": require.resolve("url/"), // Uncomment if modules
+                // "timers": require.resolve("timers-browserify"), // Uncomment if modules
+                // "stream": require.resolve("stream-browserify"), // Uncomment if modules
                                 //"events":false,
                 //
                 "events": require.resolve("events/"),
