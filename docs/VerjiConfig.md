@@ -172,6 +172,8 @@
     Used by : [verji-onboarding-module] - CustomInviteDialog.tsx
 -   `UIFeature.searchInAllRooms` - Shows/hides "All rooms" tab in  when you search in rooms.
     Used by : SearchBar.tsx
+-   `UIFeature.leaveSpaceButton` - Shows/hides "Leave Space" button in Space-Settings
+    Used by : SpaceSettingsGeneralTab.tsx
 ## How to use feature flags
 First we have to define them in the element framework
 -   UIFeatures.ts : SearchWarning = "UIFeature.SearchWarning"
