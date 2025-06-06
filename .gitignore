@@ -29,3 +29,6 @@ electron/pub
 /build_config.yaml
 /book
 /index.html
+
+# Verji ignore .yalc
+/.yalc
