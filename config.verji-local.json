@@ -162,6 +162,7 @@
         "UIFeature.showRecentsInSuggestions": false,
         "UIFeature.searchInAllRooms": false,
         "UIFeature.leaveSpaceButton": false,
+        "UIFeature.switchSpaceOnDMSelect": false,
         "breadcrumbs": true,
         "custom_themes": [
             {
