@@ -174,6 +174,7 @@
     Used by : SearchBar.tsx
 -   `UIFeature.leaveSpaceButton` - Shows/hides "Leave Space" button in Space-Settings
     Used by : SpaceSettingsGeneralTab.tsx
+-   `UIFeature.switchSpaceOnDMSelect` - Overrides default Element-Web behaviour to attempt to switch space-context to parent space of DM. If false, we don't bother trying to set "parent space" of DM-rooms to `activeSpace`
 ## How to use feature flags
 First we have to define them in the element framework
 -   UIFeatures.ts : SearchWarning = "UIFeature.SearchWarning"
@@ -207,6 +208,7 @@ Verji uses the matrix/element module system to dynamically build customised feat
 - [@verji/verji-usermenu-module](https://github.com/verji/verji-usermenu-module)
 - [@verji/verji-onboarding-module](https://github.com/verji/verji-onboarding-module)
 - [@verji/verji-news-module](https://github.com/verji/verji-news-module)
+- [@verji/verji-roomsublist-module](https://github.com/verji/verji-roomsublist-module)
 
 ## Verji Extension Modules
 - [@verji/verji-usersearch-module](https://github.com/verji/verji-usersearch-module)

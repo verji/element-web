@@ -4,6 +4,7 @@
     "verjiAclUrl": "https://itopsacl.staging.verji.app",
     "verjiIdUrl": "https://id.staging.verji.app",
     "verjiMatrixUrl": "https://itopsmx.staging.verji.app",
+    "verjiItopsUrl": "https://itops.staging.verji.app",
     "verjiDefaultApiTimeout": 90000,
     "growthbookConfig": {
         "apiHost": "https://gb-api.features.verji.app",
@@ -162,6 +163,7 @@
         "UIFeature.showRecentsInSuggestions": false,
         "UIFeature.searchInAllRooms": false,
         "UIFeature.leaveSpaceButton": false,
+        "UIFeature.switchSpaceOnDMSelect": false,
         "breadcrumbs": true,
         "custom_themes": [
             {
