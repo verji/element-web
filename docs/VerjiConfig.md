@@ -177,6 +177,8 @@
 -   `UIFeature.switchSpaceOnDMSelect` - Overrides default Element-Web behaviour to attempt to switch space-context to parent space of DM. If false, we don't bother trying to set "parent space" of DM-rooms to `activeSpace`
 -   `UIFeature.showNsfwContentSetting` - Shows/hides the "Show NSFW content" setting in user preferences.
     Used by : PreferencesUserSettingsTab.tsx
+-   `UIFeature.verjiSpaceDmBadges` - When enabled, includes Verji-fetched DM rooms in space badge notification counts. Allows SpaceStore to accept DM room lists from the verji-roomsublist-module and merge them into the notification state for each space. Also triggers eager pre-fetch of DMs for all spaces on startup so badges are accurate before the user visits each space. Default: false.
+    Used by : SpaceStore.ts, [verji-roomsublist-module] - CustomRoomSublist.tsx, CustomRoomSublistModule.tsx
 ## How to use feature flags
 First we have to define them in the element framework
 -   UIFeatures.ts : SearchWarning = "UIFeature.SearchWarning"

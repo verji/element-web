@@ -58,6 +58,7 @@
       "feature_room_history_key_sharing": true,
       "feature_location_share_live": true,
       "feature_location_share_pin_drop": true,
+      "feature_group_calls": false,
       "autologout": "10800000"
     },
     "default_federate": true,
@@ -163,6 +164,7 @@
         "UIFeature.searchInAllRooms": false,
         "UIFeature.leaveSpaceButton": false,
         "UIFeature.switchSpaceOnDMSelect": false,
+        "UIFeature.verjiSpaceDmBadges": true,
         "breadcrumbs": true,
         "custom_themes": [
             {
