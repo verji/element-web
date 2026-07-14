@@ -30,7 +30,7 @@ skip_module_dependency_version_check: true
 modules:
     - "@verji/verji-cryptosetup-module"
     - "@verji/verji-usermenu-module"
-    - "@verji/verji-onboarding-module"
+    - "@verji/verji-onboarding-module@0.3.2"
     - "@verji/verji-usersearch-module"
     - "@verji/verji-news-module"
     - "@verji/verji-eventsearch-module"
