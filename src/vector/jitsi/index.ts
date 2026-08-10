@@ -34,7 +34,6 @@ import type {
     JitsiMeetExternalAPIConstructor,
     ExternalAPIEventCallbacks,
     JitsiMeetExternalAPI as _JitsiMeetExternalAPI,
-    AudioMuteStatusChangedEvent,
     LogEvent,
     VideoMuteStatusChangedEvent,
     ExternalAPIOptions as _ExternalAPIOptions,
@@ -103,6 +102,14 @@ let widgetApi: WidgetApi | undefined;
 let meetApi: _JitsiMeetExternalAPI | undefined;
 let skipOurWelcomeScreen = false;
 
+async function checkAudioVideoEnabled(): Promise<[audioEnabled: boolean, videoEnabled: boolean]> {
+    if (!meetApi) return [false, false];
+    const [audioEnabled, videoEnabled] = (await Promise.all([meetApi.isAudioMuted(), meetApi.isVideoMuted()])).map(
+        (muted) => !muted,
+    );
+    return [audioEnabled, videoEnabled];
+}
+
 const setupCompleted = (async (): Promise<string | void> => {
     try {
         // Queue a config.json lookup asap, so we can use it later on. We want this to be concurrent with
@@ -159,7 +166,7 @@ const setupCompleted = (async (): Promise<string | void> => {
 
             const handleAction = (
                 action: WidgetApiAction,
-                handler: (request: IWidgetApiRequestData) => Promise<void>,
+                handler: (request: IWidgetApiRequestData) => Promise<IWidgetApiResponseData | void>,
             ): void => {
                 widgetApi!.on(`action:${action}`, async (ev: CustomEvent<IWidgetApiRequest>) => {
                     ev.preventDefault();
@@ -167,8 +174,7 @@ const setupCompleted = (async (): Promise<string | void> => {
 
                     let response: IWidgetApiResponseData;
                     try {
-                        await handler(ev.detail.data);
-                        response = {};
+                        response = (await handler(ev.detail.data)) ?? {};
                     } catch (e) {
                         if (e instanceof Error) {
                             response = { error: { message: e.message } };
@@ -177,42 +183,43 @@ const setupCompleted = (async (): Promise<string | void> => {
                         }
                     }
 
-                    await widgetApi!.transport.reply(ev.detail, response);
+                    widgetApi!.transport.reply(ev.detail, response);
                 });
             };
 
             handleAction(ElementWidgetActions.JoinCall, async ({ audioInput, videoInput }) => {
-                joinConference(audioInput as string | null, videoInput as string | null);
+                void joinConference(audioInput as string | null, videoInput as string | null);
             });
             handleAction(ElementWidgetActions.HangupCall, async ({ force }) => {
                 if (force === true) {
                     meetApi?.dispose();
-                    notifyHangup();
+                    void notifyHangup();
                     meetApi = undefined;
                     closeConference();
                 } else {
                     meetApi?.executeCommand("hangup");
                 }
             });
-            handleAction(ElementWidgetActions.MuteAudio, async () => {
-                if (meetApi && !(await meetApi.isAudioMuted())) {
+            handleAction(ElementWidgetActions.DeviceMute, async (params) => {
+                if (!meetApi) return;
+
+                const [audioEnabled, videoEnabled] = await checkAudioVideoEnabled();
+
+                if (Object.keys(params).length === 0) {
+                    // Handle query
+                    return {
+                        audio_enabled: audioEnabled,
+                        video_enabled: videoEnabled,
+                    };
+                }
+
+                if (params.audio_enabled !== audioEnabled) {
                     meetApi.executeCommand("toggleAudio");
                 }
-            });
-            handleAction(ElementWidgetActions.UnmuteAudio, async () => {
-                if (meetApi && (await meetApi.isAudioMuted())) {
-                    meetApi.executeCommand("toggleAudio");
-                }
-            });
-            handleAction(ElementWidgetActions.MuteVideo, async () => {
-                if (meetApi && !(await meetApi.isVideoMuted())) {
+                if (params.video_enabled !== videoEnabled) {
                     meetApi.executeCommand("toggleVideo");
                 }
-            });
-            handleAction(ElementWidgetActions.UnmuteVideo, async () => {
-                if (meetApi && (await meetApi.isVideoMuted())) {
-                    meetApi.executeCommand("toggleVideo");
-                }
+                return params;
             });
             handleAction(ElementWidgetActions.TileLayout, async () => {
                 meetApi?.executeCommand("setTileView", true);
@@ -297,7 +304,7 @@ function toggleConferenceVisibility(inConference: boolean): void {
 
 function skipToJitsiSplashScreen(): void {
     // really just a function alias for self-documenting code
-    joinConference();
+    void joinConference();
 }
 
 /**
@@ -473,7 +480,7 @@ async function joinConference(audioInput?: string | null, videoInput?: string | 
     meetApi.on("videoConferenceLeft", onVideoConferenceLeft);
     meetApi.on("readyToClose", closeConference as ExternalAPIEventCallbacks["readyToClose"]);
     meetApi.on("errorOccurred", onErrorOccurred);
-    meetApi.on("audioMuteStatusChanged", onAudioMuteStatusChanged);
+    meetApi.on("audioMuteStatusChanged", onMuteStatusChanged);
     meetApi.on("videoMuteStatusChanged", onVideoMuteStatusChanged);
 
     (["videoConferenceJoined", "participantJoined", "participantLeft"] as const).forEach((event) => {
@@ -500,8 +507,8 @@ const onVideoConferenceJoined = (): void => {
     if (widgetApi) {
         // ignored promise because we don't care if it works
         // noinspection JSIgnoredPromiseFromCall
-        widgetApi.setAlwaysOnScreen(true);
-        widgetApi.transport.send(ElementWidgetActions.JoinCall, {});
+        void widgetApi.setAlwaysOnScreen(true);
+        void widgetApi.transport.send(ElementWidgetActions.JoinCall, {});
     }
 
     // Video rooms should start in tile mode
@@ -509,7 +516,7 @@ const onVideoConferenceJoined = (): void => {
 };
 
 const onVideoConferenceLeft = (): void => {
-    notifyHangup();
+    void notifyHangup();
     meetApi = undefined;
 };
 
@@ -517,15 +524,19 @@ const onErrorOccurred = ({ error }: Parameters<ExternalAPIEventCallbacks["errorO
     if (error.isFatal) {
         // We got disconnected. Since Jitsi Meet might send us back to the
         // prejoin screen, we're forced to act as if we hung up entirely.
-        notifyHangup(error.message);
+        void notifyHangup(error.message);
         meetApi = undefined;
         closeConference();
     }
 };
 
-const onAudioMuteStatusChanged = ({ muted }: AudioMuteStatusChangedEvent): void => {
-    const action = muted ? ElementWidgetActions.MuteAudio : ElementWidgetActions.UnmuteAudio;
-    widgetApi?.transport.send(action, {});
+const onMuteStatusChanged = async (): Promise<void> => {
+    if (!meetApi) return;
+    const [audioEnabled, videoEnabled] = await checkAudioVideoEnabled();
+    void widgetApi?.transport.send(ElementWidgetActions.DeviceMute, {
+        audio_enabled: audioEnabled,
+        video_enabled: videoEnabled,
+    });
 };
 
 const onVideoMuteStatusChanged = ({ muted }: VideoMuteStatusChangedEvent): void => {
@@ -534,16 +545,14 @@ const onVideoMuteStatusChanged = ({ muted }: VideoMuteStatusChangedEvent): void 
         // hanging up, which we need to ignore by padding the timeout here,
         // otherwise the React SDK will mistakenly think the user turned off
         // their video by hand
-        setTimeout(() => {
-            if (meetApi) widgetApi?.transport.send(ElementWidgetActions.MuteVideo, {});
-        }, 200);
+        setTimeout(() => onMuteStatusChanged, 200);
     } else {
-        widgetApi?.transport.send(ElementWidgetActions.UnmuteVideo, {});
+        void onMuteStatusChanged();
     }
 };
 
 const updateParticipants = (): void => {
-    widgetApi?.transport.send(ElementWidgetActions.CallParticipants, {
+    void widgetApi?.transport.send(ElementWidgetActions.CallParticipants, {
         participants: meetApi?.getParticipantsInfo(),
     });
 };
