@@ -217,3 +217,29 @@ Verji uses the matrix/element module system to dynamically build customised feat
 ## Verji Extension Modules
 - [@verji/verji-usersearch-module](https://github.com/verji/verji-usersearch-module)
 - [@verji/verji-cryptosetup-module](https://github.com/verji/verji-cryptosetup-module)
+
+# Branding
+
+The web client is branded as Verji everywhere a user (or a link-preview bot) can see it:
+
+- `src/vector/index.html` carries the page title, `application-name` and the Open Graph tags (`og:title`,
+  `og:site_name`, `og:description`, `og:image`) that Slack, Teams, iMessage etc. use when someone pastes a link
+  to the client.
+- The Open Graph image must be an absolute URL, so `webpack.config.js` defaults it to
+  `https://client.prod.verji.app/vector-icons/1240x600.png`. Set the `RIOT_OG_IMAGE_URL` environment variable at
+  build time to point at another host or image.
+- `src/vector/mobile_guide/` is the landing page phones are redirected to. It links to the Verji apps on the
+  App Store and Google Play. The links can be overridden (or disabled with `null`) per deployment with the
+  standard `mobile_builds` option in `config.json`, which is also what the in-app download prompts use:
+
+```json
+"mobile_builds": {
+    "ios": "https://apps.apple.com/app/verji/id1558512305",
+    "android": "https://play.google.com/store/apps/details?id=com.rosberg.verji",
+    "fdroid": null
+}
+```
+
+- The same defaults live in `SdkConfig.DEFAULTS` in matrix-react-sdk, so they apply when `config.json` says nothing.
+- `res/manifest.json` (PWA name and related apps), `res/vector-icons/` (favicons, tile colour) and the static
+  error pages in `src/vector/static/` are all Verji branded as well.

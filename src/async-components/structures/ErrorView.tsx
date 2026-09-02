@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import * as React from "react";
+import SdkConfig from "matrix-react-sdk/src/SdkConfig"; // VERJI
 
 import { _t } from "../../languageHandler";
 
@@ -29,12 +30,14 @@ interface IProps {
 }
 
 const ErrorView: React.FC<IProps> = ({ title, messages }) => {
+    const brand = SdkConfig.get("brand"); // VERJI
     return (
         <div className="mx_ErrorView">
             <div className="mx_ErrorView_container">
                 <div className="mx_HomePage_header">
                     <span className="mx_HomePage_logo">
-                        <img height="42" src="themes/element/img/logos/element-logo.svg" alt="Element" />
+                        {/* VERJI: Verji icon instead of the Element logo */}
+                        <img height="42" src="vector-icons/180.png" alt={brand} />
                     </span>
                     <h1>{_t("failed_to_start")}</h1>
                 </div>
@@ -48,8 +51,9 @@ const ErrorView: React.FC<IProps> = ({ title, messages }) => {
                 </div>
                 <div className="mx_HomePage_row mx_Center mx_Spacer">
                     <p className="mx_Spacer">
-                        <a href="https://element.io" target="_blank" className="mx_FooterLink">
-                            {_t("go_to_element_io")}
+                        {/* VERJI: link to verji.no instead of element.io */}
+                        <a href="https://verji.no" target="_blank" rel="noreferrer noopener" className="mx_FooterLink">
+                            {_t("go_to_verji_no")}
                         </a>
                     </p>
                 </div>

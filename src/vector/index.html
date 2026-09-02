@@ -16,13 +16,22 @@
     <meta name="referrer" content="no-referrer">
     <link rel="shortcut icon" href="<%= require('../../res/vector-icons/favicon.ico') %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="apple-mobile-web-app-title" content="Element">
-    <meta name="application-name" content="Element">
-    <meta name="msapplication-TileColor" content="#da532c">
+    <!-- VERJI START: Verji branding (app name, tile colour) -->
+    <meta name="apple-mobile-web-app-title" content="Verji">
+    <meta name="application-name" content="Verji">
+    <meta name="msapplication-TileColor" content="#237c14">
+    <!-- VERJI END -->
     <meta name="msapplication-TileImage" content="<%= require('../../res/vector-icons/mstile-150.png') %>">
     <meta name="msapplication-config" content="<%= require('../../res/vector-icons/browserconfig.xml') %>">
     <meta name="theme-color" content="#ffffff">
+    <!-- VERJI START: Open Graph metadata, i.e. what link previews (Slack, Teams, iMessage, ...) show for links into the app -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Verji" />
+    <meta property="og:title" content="Verji" />
+    <meta property="og:description" content="Secure, encrypted communication for your business." />
     <meta property="og:image" content="<%= og_image_url %>" />
+    <meta name="twitter:card" content="summary" />
+    <!-- VERJI END -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'none';
         style-src 'self' 'unsafe-inline' <%= csp_extra_source %> https://euc-widget.freshworks.com;
@@ -58,7 +67,7 @@
 
   </head>
   <body style="height: 100%; margin: 0;">
-    <noscript>Sorry, Element requires JavaScript to be enabled.</noscript> <!-- TODO: Translate this? -->
+    <noscript>Sorry, Verji requires JavaScript to be enabled.</noscript> <!-- VERJI: brand name --> <!-- TODO: Translate this? -->
     <div id="matrixchat" style="height: 100%;" class="notranslate"></div>
 
 <%

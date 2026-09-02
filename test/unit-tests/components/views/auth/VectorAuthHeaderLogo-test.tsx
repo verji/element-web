@@ -16,10 +16,21 @@ limitations under the License.
 
 import * as React from "react";
 import { render } from "@testing-library/react";
+import SdkConfig from "matrix-react-sdk/src/SdkConfig";
 
 import VectorAuthHeaderLogo from "../../../../../src/components/views/auth/VectorAuthHeaderLogo";
 
 describe("<VectorAuthHeaderLogo />", () => {
+    // VERJI START: the logo now uses the configured brand as alt text
+    beforeEach(() => {
+        SdkConfig.put({ brand: "Verji" });
+    });
+
+    afterEach(() => {
+        SdkConfig.reset();
+    });
+    // VERJI END
+
     it("should match snapshot", () => {
         const { asFragment } = render(<VectorAuthHeaderLogo />);
         expect(asFragment()).toMatchSnapshot();

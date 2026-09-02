@@ -29,18 +29,20 @@ interface IProps {
 
 const CompatibilityView: React.FC<IProps> = ({ onAccept }) => {
     const brand = SdkConfig.get("brand");
+    // VERJI START: The store links default to the Verji apps (see SdkConfig DEFAULTS) and can be overridden or
+    // disabled (null) per deployment through the `mobile_builds` config option. Upstream rendered the
+    // Element store links here.
     const mobileBuilds = SdkConfig.get("mobile_builds");
 
     let ios: JSX.Element | undefined;
-    const iosCustomUrl = mobileBuilds?.ios;
-    if (iosCustomUrl !== null) {
-        // could be undefined or a string
+    const iosUrl = mobileBuilds?.ios;
+    if (iosUrl) {
         ios = (
             <>
                 <p>
                     <strong>iOS</strong> (iPhone or iPad)
                 </p>
-                <a href={iosCustomUrl} target="_blank" rel="noreferrer noopener" className="mx_ClearDecoration">
+                <a href={iosUrl} target="_blank" rel="noreferrer noopener" className="mx_ClearDecoration">
                     <img height="48" src="themes/element/img/download/apple.svg" alt="Apple App Store" />
                 </a>
             </>
@@ -52,40 +54,18 @@ const CompatibilityView: React.FC<IProps> = ({ onAccept }) => {
             <strong>Android</strong>
         </p>,
     ];
-    const andCustomUrl = mobileBuilds?.android;
-    const fdroidCustomUrl = mobileBuilds?.fdroid;
-    if (andCustomUrl !== null) { // undefined or string
-        android.push(<a
-            href={"https://play.google.com/store/apps/details?id=com.rosberg.verji"}
-            target="_blank"
-            className="mx_ClearDecoration"
-            key="android"
-        >
-            <img height="48" src="themes/element/img/download/google.svg" alt="Google Play Store" />
-        </a>);
-    }
-
-    if (andCustomUrl !== null) {
-        // undefined or string
-        android.push(<a
-            href={"https://play.google.com/store/apps/details?id=com.rosberg.verji"}
-            target="_blank"
-            className="mx_ClearDecoration"
-            key="fdroid"
-        >
-            <img height="48" src="themes/element/img/download/fdroid.svg" alt="F-Droid" />
-        </a>);
-    }
-    if (fdroidCustomUrl !== null) {
-        // undefined or string
+    const androidUrl = mobileBuilds?.android;
+    if (androidUrl) {
         android.push(
-            <a
-                href={fdroidCustomUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="mx_ClearDecoration"
-                key="fdroid"
-            >
+            <a href={androidUrl} target="_blank" rel="noreferrer noopener" className="mx_ClearDecoration" key="android">
+                <img height="48" src="themes/element/img/download/google.svg" alt="Google Play Store" />
+            </a>,
+        );
+    }
+    const fdroidUrl = mobileBuilds?.fdroid;
+    if (fdroidUrl) {
+        android.push(
+            <a href={fdroidUrl} target="_blank" rel="noreferrer noopener" className="mx_ClearDecoration" key="fdroid">
                 <img height="48" src="themes/element/img/download/fdroid.svg" alt="F-Droid" />
             </a>,
         );
@@ -94,6 +74,7 @@ const CompatibilityView: React.FC<IProps> = ({ onAccept }) => {
         // just a header, meaning no links
         android = [];
     }
+    // VERJI END
 
     let mobileHeader: ReactNode = <h2 id="step2_heading">{_t("use_brand_on_mobile", { brand })}</h2>;
     if (!android.length && !ios) {
@@ -105,7 +86,8 @@ const CompatibilityView: React.FC<IProps> = ({ onAccept }) => {
             <div className="mx_ErrorView_container">
                 <div className="mx_HomePage_header">
                     <span className="mx_HomePage_logo">
-                        <img height="42" src="themes/element/img/logos/element-logo.svg" alt="Verji" /> //Verji
+                        {/* VERJI: Verji icon instead of the Element logo */}
+                        <img height="42" src="vector-icons/180.png" alt={brand} />
                     </span>
                     <h1>{_t("incompatible_browser|title")}</h1>
                 </div>
@@ -144,8 +126,9 @@ const CompatibilityView: React.FC<IProps> = ({ onAccept }) => {
 
                 <div className="mx_HomePage_row mx_Center mx_Spacer">
                     <p className="mx_Spacer">
-                        <a href="https://element.io" target="_blank" className="mx_FooterLink">
-                            {_t("go_to_element_io")}
+                        {/* VERJI: link to verji.no instead of element.io */}
+                        <a href="https://verji.no" target="_blank" rel="noreferrer noopener" className="mx_FooterLink">
+                            {_t("go_to_verji_no")}
                         </a>
                     </p>
                 </div>
