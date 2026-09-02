@@ -748,8 +748,15 @@ module.exports = (env, argv) => {
 
             new CopyWebpackPlugin({
                 patterns: [
-                    "res/apple-app-site-association",
                     { from: ".well-known/**", context: path.resolve(__dirname, "res") },
+                    // VERJI: apple-app-site-association lives in res/.well-known (Apple's documented
+                    // location, copied by the pattern above). Emit it at the root as well, because
+                    // that is the legacy path older iOS versions look at.
+                    {
+                        from: "res/.well-known/apple-app-site-association",
+                        to: "apple-app-site-association",
+                        toType: "file",
+                    },
                     "res/jitsi_external_api.min.js",
                     "res/jitsi_external_api.min.js.LICENSE.txt",
                     "res/manifest.json",
