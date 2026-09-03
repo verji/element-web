@@ -17,7 +17,9 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 dotenv.config();
 let ogImageUrl = process.env.RIOT_OG_IMAGE_URL;
-if (!ogImageUrl) ogImageUrl = "https://app.element.io/themes/element/img/logos/opengraph.png";
+// VERJI: Link previews (Slack, Teams, ...) require an absolute URL here, so default to the Verji logo as served by the
+// production web client (res/vector-icons is copied verbatim into the build). Set RIOT_OG_IMAGE_URL to override.
+if (!ogImageUrl) ogImageUrl = "https://client.prod.verji.app/vector-icons/1240x600.png";
 
 if (!process.env.VERSION) {
     console.warn("Unset VERSION variable - this may affect build output");
@@ -746,8 +748,15 @@ module.exports = (env, argv) => {
 
             new CopyWebpackPlugin({
                 patterns: [
-                    "res/apple-app-site-association",
                     { from: ".well-known/**", context: path.resolve(__dirname, "res") },
+                    // VERJI: apple-app-site-association lives in res/.well-known (Apple's documented
+                    // location, copied by the pattern above). Emit it at the root as well, because
+                    // that is the legacy path older iOS versions look at.
+                    {
+                        from: "res/.well-known/apple-app-site-association",
+                        to: "apple-app-site-association",
+                        toType: "file",
+                    },
                     "res/jitsi_external_api.min.js",
                     "res/jitsi_external_api.min.js.LICENSE.txt",
                     "res/manifest.json",

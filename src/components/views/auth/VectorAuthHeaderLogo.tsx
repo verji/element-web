@@ -21,11 +21,12 @@ import SdkConfig from "matrix-react-sdk/src/SdkConfig";
 export default class VectorAuthHeaderLogo extends React.PureComponent {
     public render(): React.ReactElement {
         const brandingConfig = SdkConfig.getObject("branding");
-        const logoUrl = brandingConfig?.get("auth_header_logo_url") ?? "themes/element/img/logos/element-logo.svg";
+        // VERJI: fall back to the Verji icon and use the configured brand as alt text
+        const logoUrl = brandingConfig?.get("auth_header_logo_url") ?? "vector-icons/300.png";
 
         return (
             <aside className="mx_AuthHeaderLogo">
-                <img src={logoUrl} alt="Element" />
+                <img src={logoUrl} alt={SdkConfig.get("brand")} />
             </aside>
         );
     }

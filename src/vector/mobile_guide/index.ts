@@ -1,122 +1,47 @@
+/*
+ * VERJI: Rewritten for the Verji mobile guide. Upstream Element used this script to build a
+ * mobile.element.io "configure your app" link from the homeserver config; the Verji apps have the
+ * homeserver built in, so this now only wires up the "Go to Desktop Site" link and lets the app store
+ * links be overridden through config.json.
+ */
 import { logger } from "matrix-js-sdk/src/logger";
 
 import { getVectorConfig } from "../getconfig";
 
-function onBackToElementClick(): void {
-    // Cookie should expire in 4 hours
+function onBackToDesktopClick(): void {
+    // Cookie should expire in 4 hours. The name is shared with the redirect in src/vector/index.ts
+    // and the mobile guide toast in matrix-react-sdk, so keep them in sync if it ever changes.
     document.cookie = "element_mobile_redirect_to_guide=false;path=/;max-age=14400";
     window.location.href = "../";
 }
 
-// NEVER pass user-controlled content to this function! Hardcoded strings only please.
-function renderConfigError(message: string): void {
-    const contactMsg =
-        "If this is unexpected, please contact your system administrator " + "or technical support representative.";
-    message = `<h2>Error loading Element</h2><p>${message}</p><p>${contactMsg}</p>`;
+/**
+ * Applies a `mobile_builds` value from config.json to one of the app store links on the page:
+ * a string replaces the default (Verji) link, `null` hides it, and anything else keeps the default.
+ */
+function applyStoreLink(elementId: string, url: string | null | undefined): void {
+    const link = document.getElementById(elementId) as HTMLAnchorElement | null;
+    if (!link) return;
 
-    const toHide = document.getElementsByClassName("mx_HomePage_container");
-    const errorContainers = document.getElementsByClassName(
-        "mx_HomePage_errorContainer",
-    ) as HTMLCollectionOf<HTMLDivElement>;
-
-    for (const e of toHide) {
-        // We have to clear the content because .style.display='none'; doesn't work
-        // due to an !important in the CSS.
-        e.innerHTML = "";
-    }
-    for (const e of errorContainers) {
-        e.style.display = "block";
-        e.innerHTML = message;
+    if (url === null) {
+        link.style.display = "none";
+    } else if (typeof url === "string" && url.length > 0) {
+        link.href = url;
     }
 }
 
 async function initPage(): Promise<void> {
-    document.getElementById("back_to_element_button")!.onclick = onBackToElementClick;
+    document.getElementById("back_to_desktop_button")!.onclick = onBackToDesktopClick;
 
-    const config = await getVectorConfig("..");
-
-    // We manually parse the config similar to how validateServerConfig works because
-    // calling that function pulls in roughly 4mb of JS we don't use.
-
-    const wkConfig = config?.["default_server_config"]; // overwritten later under some conditions
-    const serverName = config?.["default_server_name"];
-    const defaultHsUrl = config?.["default_hs_url"];
-    const defaultIsUrl = config?.["default_is_url"];
-
-    const incompatibleOptions = [wkConfig, serverName, defaultHsUrl].filter((i) => !!i);
-    if (defaultHsUrl && (wkConfig || serverName)) {
-        return renderConfigError(
-            "Invalid configuration: a default_hs_url can't be specified along with default_server_name " +
-                "or default_server_config",
-        );
-    }
-    if (incompatibleOptions.length < 1) {
-        return renderConfigError("Invalid configuration: no default server specified.");
-    }
-
-    let hsUrl: string | undefined;
-    let isUrl: string | undefined;
-
-    if (!serverName && typeof wkConfig?.["m.homeserver"]?.["base_url"] === "string") {
-        hsUrl = wkConfig["m.homeserver"]["base_url"];
-
-        if (typeof wkConfig["m.identity_server"]?.["base_url"] === "string") {
-            isUrl = wkConfig["m.identity_server"]["base_url"];
-        }
-    }
-
-    if (serverName) {
-        // We also do our own minimal .well-known validation to avoid pulling in the js-sdk
-        try {
-            const result = await fetch(`https://${serverName}/.well-known/matrix/client`);
-            const wkConfig = await result.json();
-            if (wkConfig && wkConfig["m.homeserver"]) {
-                hsUrl = wkConfig["m.homeserver"]["base_url"];
-
-                if (wkConfig["m.identity_server"]) {
-                    isUrl = wkConfig["m.identity_server"]["base_url"];
-                }
-            }
-        } catch (e) {
-            if (wkConfig && wkConfig["m.homeserver"]) {
-                hsUrl = wkConfig["m.homeserver"]["base_url"] || undefined;
-
-                if (wkConfig["m.identity_server"]) {
-                    isUrl = wkConfig["m.identity_server"]["base_url"] || undefined;
-                }
-            } else {
-                logger.error(e);
-                return renderConfigError("Unable to fetch homeserver configuration");
-            }
-        }
-    }
-
-    if (defaultHsUrl) {
-        hsUrl = defaultHsUrl;
-        isUrl = defaultIsUrl;
-    }
-
-    if (!hsUrl) {
-        return renderConfigError("Unable to locate homeserver");
-    }
-
-    if (hsUrl && !hsUrl.endsWith("/")) hsUrl += "/";
-    if (isUrl && !isUrl.endsWith("/")) isUrl += "/";
-
-    if (hsUrl !== "https://matrix.org/") {
-        let url = "https://mobile.element.io?hs_url=" + encodeURIComponent(hsUrl);
-
-        if (isUrl) {
-            document.getElementById("custom_is")!.style.display = "block";
-            document.getElementById("is_url")!.style.display = "block";
-            document.getElementById("is_url")!.innerText = isUrl;
-            url += "&is_url=" + encodeURIComponent(isUrl ?? "");
-        }
-
-        (document.getElementById("configure_element_button") as HTMLAnchorElement).href = url;
-        document.getElementById("step1_heading")!.innerHTML = "1: Install the app";
-        document.getElementById("step2_container")!.style.display = "block";
-        document.getElementById("hs_url")!.innerText = hsUrl;
+    // The store links can be overridden through the same `mobile_builds` config option the main app
+    // uses for its download prompts. If the config can't be loaded we simply keep the default links.
+    try {
+        const config = await getVectorConfig("..");
+        const mobileBuilds = config?.["mobile_builds"];
+        applyStoreLink("ios_store_link", mobileBuilds?.ios);
+        applyStoreLink("android_store_link", mobileBuilds?.android);
+    } catch (e) {
+        logger.warn("Unable to load config for the mobile guide, keeping the default app store links", e);
     }
 }
 

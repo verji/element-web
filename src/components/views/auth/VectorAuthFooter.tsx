@@ -22,11 +22,9 @@ import { _t } from "../../../languageHandler";
 
 const VectorAuthFooter = (): ReactElement => {
     const brandingConfig = SdkConfig.getObject("branding");
-    const links = brandingConfig?.get("auth_footer_links") ?? [
-        { text: "Blog", url: "https://element.io/blog" },
-        { text: "Twitter", url: "https://twitter.com/element_hq" },
-        { text: "GitHub", url: "https://github.com/element-hq/element-web" },
-    ];
+    // VERJI: Verji default links instead of Element's blog/Twitter/GitHub; deployments can replace these through
+    // `branding.auth_footer_links` in config.json.
+    const links = brandingConfig?.get("auth_footer_links") ?? [{ text: "verji.no", url: "https://verji.no" }];
 
     const authFooterLinks: JSX.Element[] = [];
     for (const linkEntry of links) {

@@ -16,13 +16,19 @@ limitations under the License.
 
 import * as React from "react";
 import { render } from "@testing-library/react";
+import SdkConfig from "matrix-react-sdk/src/SdkConfig";
 
 import ErrorView from "../../../../src/async-components/structures/ErrorView";
 import { setupLanguageMock } from "../../../setup/setupLanguage";
 
 describe("<ErrorView />", () => {
     beforeEach(() => {
+        SdkConfig.put({ brand: "Verji" }); // VERJI: the view now uses the configured brand
         setupLanguageMock();
+    });
+
+    afterEach(() => {
+        SdkConfig.reset(); // VERJI
     });
 
     it("should match snapshot", () => {

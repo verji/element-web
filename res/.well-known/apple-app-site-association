@@ -3,10 +3,7 @@
     "details": [
       {
         "appIDs": [
-          "7J4U792NQT.im.vector.app",
-          "7J4U792NQT.io.element.elementx",
-          "7J4U792NQT.io.element.elementx.nightly",
-          "7J4U792NQT.io.element.elementx.pr"
+          "V7XGF6R8G9.com.rosberg.verji"
         ],
         "components": [
           {
@@ -26,10 +23,7 @@
   },
   "webcredentials": {
     "apps": [
-      "7J4U792NQT.im.vector.app",
-      "7J4U792NQT.io.element.elementx",
-      "7J4U792NQT.io.element.elementx.nightly",
-      "7J4U792NQT.io.element.elementx.pr"
+      "V7XGF6R8G9.com.rosberg.verji"
     ]
   }
 }
