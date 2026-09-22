@@ -150,6 +150,7 @@
         "UIFeature.roomPreviewRejectIgnoreButton": false,
         "UIFeature.multipleCallsInRoom": false,
         "UIFeature.showPlusMenuForMetaSpace": false,
+        "UIFeature.showRoomListPlusMenu": false,
         "UIFeature.showStartChatPlusMenuForMetaSpace": false,
         "UIFeature.showAddRoomPlusMenuForMetaSpace": false,
         "UIFeature.showMembersListForSpaces": false,
