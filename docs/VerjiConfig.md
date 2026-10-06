@@ -41,9 +41,9 @@
 -   `UIFeature.userInfoShareLinkToUserButton` - Shows/hide the the share room link in the user panel
     Used by : UserInfo.tsx.tsx
 -   `UIFeature.userInfoRedactButton` - Shows/hide the redact button.
-    Used by : UserInfo.tsx & RoomList.tsx
--   `UIFeature.roomListExplorePublicRooms` - Shows/hide the possibility to explore public rooms.
-    Used by : Settings.tsx
+    Used by : UserInfo.tsx
+-   `UIFeature.roomListExplorePublicRooms` - Shows/hides the "Explore" items in the menu behind the "+" on the Rooms section ("Add room"): "Explore rooms" inside a space, and "Explore public rooms" outside one. When false and the user cannot create rooms either, that "+" is not shown at all. Default: true. The Verji configs set it to false.
+    Used by : RoomList.tsx
 -   `UIFeature.createRoomE2eeSection` - Shows/hide the possibility to create non encrypted rooms. Verji only creates encrypted rooms.
     Used by : CreateRoomDialog.ts
 -   `UIFeature.createRoomShowJoinRuleDropdown` - Shows/hides the option to create rules for a room.
