@@ -120,6 +120,7 @@
         "UIFeature.enableLoginPage": false,
         "UIFeature.enableNewRoomIntro": false,
         "UIFeature.enableRoomDevTools": false,
+        "UIFeature.enableDialogDeepLinks": false,
         "UIFeature.exportDefaultSizeLimit": true,
         "UIFeature.allExportTypes": true,
         "UIFeature.exportAttatchmentsDefaultOff": true,

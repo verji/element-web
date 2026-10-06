@@ -179,6 +179,8 @@
     Used by : PreferencesUserSettingsTab.tsx
 -   `UIFeature.verjiSpaceDmBadges` - When enabled, includes Verji-fetched DM rooms in space badge notification counts. Allows SpaceStore to accept DM room lists from the verji-roomsublist-module and merge them into the notification state for each space. Also triggers eager pre-fetch of DMs for all spaces on startup so badges are accurate before the user visits each space. Default: false.
     Used by : SpaceStore.ts, [verji-roomsublist-module] - CustomRoomSublist.tsx, CustomRoomSublistModule.tsx
+-   `UIFeature.enableDialogDeepLinks` - Whether the URLs `#/new` (create room), `#/dm` (start chat) and `#/directory` (public room directory) open their dialog. When false, those URLs open what `#/` opens instead: the last room viewed, or the home page. Verji hides or gates every button that opens these dialogs, and without this flag typing the URL would open them anyway ([verji-src#1510](https://github.com/verji/verji-src/issues/1510)). Default: true. The Verji configs set it to false.
+    Used by : MatrixChat.tsx
 ## How to use feature flags
 First we have to define them in the element framework
 -   UIFeatures.ts : SearchWarning = "UIFeature.SearchWarning"
