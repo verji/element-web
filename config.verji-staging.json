@@ -4,6 +4,7 @@
     "verjiAclUrl": "https://itopsacl.staging.verji.app",
     "verjiIdUrl": "https://id.staging.verji.app",
     "verjiMatrixUrl": "https://itopsmx.staging.verji.app",
+    "verjiItopsUrl": "https://itops.staging.verji.app",
     "verjiDefaultApiTimeout": 90000,
     "growthbookConfig": {
         "apiHost": "https://gb-api.features.verji.app",
@@ -151,6 +152,7 @@
         "UIFeature.roomPreviewRejectIgnoreButton": false,
         "UIFeature.multipleCallsInRoom": false,
         "UIFeature.showPlusMenuForMetaSpace": false,
+        "UIFeature.showRoomListPlusMenu": false,
         "UIFeature.showStartChatPlusMenuForMetaSpace": false,
         "UIFeature.showAddRoomPlusMenuForMetaSpace": false,
         "UIFeature.showMembersListForSpaces": false,

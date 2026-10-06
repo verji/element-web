@@ -160,6 +160,8 @@
     Used by : LegacyCallHandler.tsx
 -   `UIFeature.showPlusMenuForMetaSpace` - Shows/hides the add meta space.
     Used by : RoomListHeader.tsx
+-   `UIFeature.showRoomListPlusMenu` - Shows/hides the "+" menu next to the space name at the top of the room list, on every space type (`showPlusMenuForMetaSpace` covers meta-spaces only). It does not affect the "+" on the Rooms section ("Add room"), which stays and is permission-gated per user for Hierarchy V2 tenants. Default: true. The Verji configs set it to false.
+    Used by : RoomListHeader.tsx
 -   `UIFeature.showStartChatPlusMenuForMetaSpace` - Shows/hides the possibility for chat in metaspaces.
     Used by : RoomList.tsx
 -   `UIFeature.showAddRoomPlusMenuForMetaSpace` - Shows/hides the possibility to add rooms to metaspaces.
