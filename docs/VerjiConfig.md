@@ -185,6 +185,12 @@
     Used by : MatrixChat.tsx
 -   `UIFeature.verjiGuestOrgOnboarding` - Whether the "Start new chat" dialog (opened by Persons+) can onboard people straight into a guest organization ([verji-src#2177](https://github.com/verji/verji-src/issues/2177)). With it on, when the dialog is opened in a guest organization's space, the people invited by email and the people picked from the directory become members of that guest organization, instead of each getting a new guest organization of their own. Only the guest organization's owner or primary contact, or the tenant's primary contact, can do this. Anyone else can still start chats there but cannot invite by email, and the dialog says why. Nothing changes outside guest organization spaces, or for tenants outside the Hierarchy V2 rollout (GrowthBook `hierarchy-v2.canonical-space-sync`). Default: false. Turn it on only where the link-onboarding API and ESB include [verji-src#2187](https://github.com/verji/verji-src/pull/2187) and the build has verji-onboarding-module 0.4.0 or later: an older API ignores the guest organization, and each invitee then gets a new guest organization of their own.
     Used by : verjiOnboardingTarget.ts, [verji-onboarding-module] - CustomInviteDialog.tsx
+
+## Verji service addresses
+
+-   `verjiOrganizationUrl` - The base address of the Organization service, for example `https://api.staging.verji.app`. With it, the people who may rename a guest organization (its owner, its primary contact, or the tenant's primary contact) can rename its space in Space settings, and the name is saved by renaming the guest organization through the Organization service ([verji-src#2377](https://github.com/verji/verji-src/issues/2377)). Matrix power levels do not let them change the name; they still apply everywhere else. Without the key, or for tenants outside the Hierarchy V2 rollout (GrowthBook `hierarchy-v2.canonical-space-sync`), the name field behaves as it does in stock Element. Set it only where the Organization service runs and accepts calls from the client's address (CORS), with verji-src#2474 deployed. The `config.verji-*.json` files in this repository are not what a deployed environment reads: a change to them is applied to staging and production separately.
+    Used by : verji-api-sdk (`convertToVerjiSdkConfig`), VerjiPermissionsStore.ts, SpaceSettingsGeneralTab.tsx
+
 ## How to use feature flags
 First we have to define them in the element framework
 -   UIFeatures.ts : SearchWarning = "UIFeature.SearchWarning"

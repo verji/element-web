@@ -5,6 +5,7 @@
     "verjiIdUrl": "https://id.staging.verji.app",
     "verjiMatrixUrl": "https://itopsmx.staging.verji.app",
     "verjiItopsUrl": "https://itops.staging.verji.app",
+    "verjiOrganizationUrl": "https://api.staging.verji.app",
     "verjiDefaultApiTimeout": 90000,
     "growthbookConfig": {
         "apiHost": "https://gb-api.features.verji.app",
